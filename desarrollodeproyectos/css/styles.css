@@ -1,0 +1,82 @@
+/* styles.css */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.chat-container {
+    width: 400px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    overflow-y: auto;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+#chat-box {
+    flex: 1;
+    padding: 10px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.consumer-message {
+    background-color: #e6f7ff;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+}
+
+.vendor-message {
+    background-color: #ccffcc;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+}
+
+.typing-indicator {
+    margin-top: 5px;
+    color: #999;
+}
+
