@@ -126,6 +126,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="forms\Carrito_Compras.aspx" />
     <Content Include="About.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -182,6 +183,13 @@
     <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="forms\Carrito_Compras.aspx.cs">
+      <DependentUpon>Carrito_Compras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Carrito_Compras.aspx.designer.cs">
+      <DependentUpon>Carrito_Compras.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -218,12 +226,14 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
