@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="Scripts/css/bootstrap.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Suscripción</title>
+
+</head>
+<body>
+    <div class="btn btn-primary" onclick="location.href='CompraSuscripcion.html';">Cancelar</div>
+    <h1>Confirmación de Suscripción</h1>
+    <p>Para poder realizar la compra, es necesario completar los siguientes espacios:</p>
+    <div id="subscription-price"></div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedOption = urlParams.get('option');
+
+        function goToHome() {
+            // Volver al inicio (no funcional)
+            alert("Volviendo al inicio...");
+        }
+
+        function displaySubscriptionDetails() {
+            const detailsContainer = document.getElementById('subscription-details');
+            if (selectedOption === '1') {
+                detailsContainer.innerHTML = `
+                    <h2>Suscripción Básica</h2>
+                    <p>Acceso a contenido exclusivo</p>
+                    <p>Precio: <strong>$9.99/mes</strong></p>
+                `;
+            } else if (selectedOption === '2') {
+                detailsContainer.innerHTML = `
+                    <h2>Suscripción Premium</h2>
+                    <p>Contenido exclusivo + Soporte prioritario</p>
+                    <p>Precio: <strong>$19.99/mes</strong></p>
+                `;
+            }
+        }
+
+        displaySubscriptionDetails();
+    </script>
+
+<form onsubmit="event.preventDefault(); alert('Enviado');">
+    <label for="cardName" >Nombre en la tarjeta:</label><br>
+    <input type="text" id="cardName" name="cardName"><br>
+    <label for="cardNumber">Número de la tarjeta:</label><br>
+    <input type="password" id="cardNumber" name="cardNumber"><br>
+    <label for="expiryDate">Fecha de vencimiento:</label><br>
+    <input type="month" id="expiryDate" name="expiryDate"><br>
+    <label for="cvv">CVV:</label><br>
+    <input type="password" id="cvv" name="cvv"><br>
+    <input type="submit" class="btn btn-success" value="Enviar">
+  </form>
+
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="Scripts/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suscripciones Mensuales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .subscription-option {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .selected {
+            background-color: #f0f0f0;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn btn-primary" onclick="goToHome()">🏠 Volver al Inicio</div>
+    <h1>Selecciona tu suscripción:</h1>
+    
+    
+    <div class="subscription-option" onclick="goToBannerLateral()">
+        <div class="card border-secondary mb-3" style="max-width: 20rem;" bis_skin_checked="1">
+            <div class="card-header" bis_skin_checked="1">Suscripcion basica</div>
+            <div class="card-body" bis_skin_checked="1">
+              <h4 class="card-title">El paquete principal</h4>
+              <p class="card-text">La suscripcion basica es ideal para publicitar algun producto en promocion de su empresa.</p>
+            </div>
+        <h2>Suscripción Básica</h2>
+        <p> - Acceso a publicitar tu producto</p>
+        <p> - Acceso a subir un Banner Lateral</p>
+        <p> - Soporte tecnico</p>
+        <p class="subscription-price">$<strong id="basicPrice">40mxn/Diario</strong></p>
+    </div>
+    </div>
+    <div class="subscription-option" onclick="goToBannerPrincipal()">
+        <div class="card border-secondary mb-3" style="max-width: 20rem;" bis_skin_checked="1">
+            <div class="card-header" bis_skin_checked="1">Suscripcion Premium</div>
+            <div class="card-body" bis_skin_checked="1">
+              <h4 class="card-title">La suscripcion ideal</h4>
+              <p class="card-text">Si lo que quiere es publicitar algun producto o promocion y que todos se enteren, esta opcion es para usted.</p>
+            </div>
+        <h2>Suscripción Premium</h2>
+        <p> - Todas las ventajas de la suscripcion basica</p>
+        <p> - Acceso subir un Banner principal</p>
+        <p> - publicitar 2 productos </p>
+        <p class="subscription-price">$<strong id="PremuimPrice">200mxn/Semanal</strong></p>
+    </div>
+    </div>
+    <script>
+        function goToHome() {
+            // Volver al inicio (no funcional)
+            alert("Volviendo al inicio...");
+        }
+
+        function goToBannerPrincipal() {
+            // Redirección a la pagina de pago
+            window.location.href = "BannerPrincipal.html";
+        }
+
+        function goToBannerLateral() {
+            // Redirección a la pagina de pago
+            window.location.href = "BannerLateral.html";
+        }
+    </script>
+</body>
+</html>
