@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/Scripts/css/bootstrap.min.css">
+  <title>Pedidos</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Nombre de la Empresa</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor02">
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <h1 class="text-center">Pedidos</h1>
+
+    <!-- Barra de búsqueda -->
+    <form class="mt-4 mb-3">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Buscar por Número de pedido" aria-label="Buscar por Número de pedido">
+        <button class="btn btn-outline-secondary" type="button">Buscar</button>
+      </div>
+    </form>
+
+    <!-- Tabla de pedidos -->
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Número de pedido</th>
+            <th>Producto/s</th>
+            <th>Comentarios adicionales</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Burritos, Té 450ml</td>
+            <td>Extras Servilletas</td>
+            <td>05/02/24</td>
+            <td>10:00 A.M</td>
+            <td class="text-success">Entregado</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Torta</td>
+            <td>Sin chile</td>
+            <td>05/02/24</td>
+            <td>14:00 P.M</td>
+            <td class="text-warning">En Preparación</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Pizza</td>
+            <td>Extra queso</td>
+            <td>05/02/24</td>
+            <td>18:30 P.M</td>
+            <td class="text-info">En camino</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Hamburguesa con papas</td>
+            <td>Sin cebolla</td>
+            <td>05/02/24</td>
+            <td>12:45 P.M</td>
+            <td class="text-warning">En Preparación</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>Ensalada César</td>
+            <td>Sin aderezo</td>
+            <td>05/02/24</td>
+            <td>19:15 P.M</td>
+            <td class="text-info">En camino</td>
+          </tr>
+        </tbody>
+      </table>
+      
+  <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+<footer class="mt-5">
+    <p class="text-center">© 2023 Nombre del Website. Todos los derechos reservados.</p>
+</footer>
+</html>
