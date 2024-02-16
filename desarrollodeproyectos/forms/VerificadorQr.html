@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Pedido</title>
+    <link rel="stylesheet" href="/desproyectostif/desarrollodeproyectos/Scripts/css/bootstrap.min.css">
+    
+</head>
+<body>
+    <div class=".container-fluid">
+        <!--<h2>Verificador de Pedido</h2>-->
+        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+            <div class="d-flex justify-content-between align-items-center">
+               
+               <a href="#" >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M5 12l14 0" />
+                      <path d="M5 12l6 6" />
+                      <path d="M5 12l6 -6" />
+                  </svg>
+               </a>
+               <h1 class="navbar-brand">Verificación de Pedido</h1>   
+           </div>
+       </nav>
+        <div id="qrScannerContainer">
+            <video id="videoElement" autoplay></video>
+        </div>
+        <form id="verificationForm">
+            <div class="form-group">
+                <!--<label for="qr_code">Código QR:</label>-->
+                <!--<input type="text" id="qr_code" name="qr_code" placeholder="Ingrese el código QR">-->
+            </div>
+            <div class="form-group">
+              <div style="text-align: center;">
+                <h3 for="verification_number">Número de Verificación:</h3>
+            </div>
+            <div style="text-align: center;">
+                <input type="text" id="verification_number" name="verification_number" placeholder="Ingrese el número de verificación">
+            </div>
+            </div>
+            <br>
+            <div style="text-align: center;">
+                <button class="btn btn-danger">Escanear Código QR </button>
+
+            </div>
+            <br>
+            <div style="text-align: center;">
+                <button id="submitBtn" type="submit" class="btn btn-success">Verificar Pedido</button>
+            </div>
+            
+        </form>
+        <br>
+        
+    </div>
+    <script src="qrscanner.js"></script>
+</body>
+</html>
