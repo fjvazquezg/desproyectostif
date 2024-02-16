@@ -1,0 +1,30 @@
+.qr-code-box {
+    border: 1px solid #000;
+    width: 200px;
+    height: 200px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.left-section,
+.right-section {
+    width: 45%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.qr-section,
+.sms-section {
+    margin-bottom: 20px;
+}
+
+.sms-section .form-control {
+    width: 5px;
+    text-align: center;
+    margin-right: 3px;
+}
