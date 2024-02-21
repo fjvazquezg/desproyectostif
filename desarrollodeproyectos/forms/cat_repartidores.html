@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/desproyectostif/desarrollodeproyectos/Scripts/css/styles.css">
+    <title>Catálogo de Repartidores</title>
+</head>
+<body>
+    <h1>Catálogo de Repartidores</h1>
+    <form id="repartidorForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="Matricula">Matricula:</label>
+        <input type="matricula" id="Matricula" name="Matricula" required>
+
+        <label for="zona">Zona de reparto:</label>
+        <input type="text" id="zona" name="zona" required>
+
+        <button type="submit">Agregar Repartidor</button>
+    </form>
+
+    <div id="repartidoresList">
+        <!-- La lista de repartidores se mostrará aquí -->
+    </div>
+
+    <script src="/desproyectostif/desarrollodeproyectos/Scripts/app.js"></script>
+</body>
+</html>
