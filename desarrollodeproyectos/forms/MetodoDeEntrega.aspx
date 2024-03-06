@@ -14,8 +14,9 @@
 
 </head>
 <body>
+
     
-      <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
      <div class="d-flex justify-content-between align-items-center">
         
         <a href="#" >
@@ -37,46 +38,89 @@
           <div class="container py-5">
             <div class="row">
 
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card shadow">
-                        <div class="card-body p-0">     
-                             <a href="#" class="cuadro" >        
-                                <h3 class="card-title" >Enviar al domicilio</h3>
-                                <p class="mb-0">Edificio: A</p> 
-                                <p class="mb-0">Salon: A5</p>
-                                <p class="mb-0">Telefono: 687-465-6587</p>
-                             </a>
+                <div class="col-md-6 col-lg-5 mb-4">
+                    <div class="card shadow cuadro" id="CuadroDomicilio">     
+                        <div class="card-body p-3">     
+                            <input type="checkbox" class="form-check-input fs-5" onclick="habilitar('CuadroDomicilio')" />
+                            <h3 class="card-title" >Enviar al domicilio</h3>
+                                <p class="mb-0">Edificio:</p>
+                                  <input type="text" id="dotxtEdificio" name="txtEdificio" class="form-control form-control-sm" runat="server" disabled />
+                                <p class="mb-0">Salon:</p>
+                                  <input type="text" id="dotxtSalon" name="txtSalon" class="form-control form-control-sm"  runat="server" disabled />
+                                <p class="mb-0">Telefono:</p> 
+                                  <input type="text" id="dotxtTelefono" name="txtTelefono" class="form-control form-control-sm"  runat="server" disabled />
 
-                            <hr class="m-0" />
+                            <hr class="m-0 my-3" />
 
-                            <a href="#" class="cuadro ">                      
-                                <h6 class="text-info">Editar o elegir otro domicilio</h6>                 
-                            </a>   
+                            <asp:Button ID="btnDomicilio" runat="server" Text="Guardar" CssClass="btn btn-secondary form-control form-control-sm" OnClick="Unnamed1_Click"  Enabled="false"  DisabledCssClass="disabled"></asp:Button>
+
                         </div>            
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card shadow">
-                        <div class="card-body p-0">     
-                            <a href="#" class="cuadro" >        
-                                <h3 class="card-title" >Retirar de un punto de entrega</h3>
-                                <p class="mb-0">Edificio: A</p> 
-                                <p class="mb-0">Salon: A5</p>
-                                <p class="mb-0">Telefono: 687-465-6587</p>
-                            </a>
+                <div class="col-md-6 col-lg-5 mb-4">
+                    <div class="card shadow cuadro" id="CuadroPunto">
+                        <div class="card-body p-3">        
+                            <input type="checkbox" class="form-check-input fs-5" onclick="habilitar('CuadroPunto')" />
+                            <h3 class="card-title" >Retirar de un punto de entrega</h3>
+                                <p class="mb-0">Edificio:</p>
+                                   <input type="text" id="putxtEdificio" name="txtEdificio" class="form-control form-control-sm" runat="server" disabled />
+                                <p class="mb-0">Salon:</p>
+                                    <input type="text" id="putxtSalon" name="txtSalon" class="form-control form-control-sm" runat="server" disabled />
+                                <p class="mb-0">Telefono:</p>
+                                    <input type="text" id="putxtTelefono" name="txtTelefono" class="form-control form-control-sm" runat="server" disabled />
 
-                            <hr class="m-0" /> 
-                   
-                           <a href="#" class="cuadro ">                      
-                                <h6 class="text-info">Ver punto en el mapa</h6>                 
-                           </a>   
+
+                            <hr class="m-0 my-3" />
+
+                            <asp:Button ID="btnpunto" runat="server" Text="Guardar" CssClass="btn btn-secondary  form-control form-control-sm" OnClick="Unnamed2_Click" Enabled="false"  DisabledCssClass="disabled"></asp:Button> 
+                            
                         </div>            
                     </div>
                 </div>
             </div>
         </div>
     </form>
+
+
+
+    
+ <script>
+     function habilitar(id) {
+         var cuadros = document.getElementsByClassName('cuadro');
+         for (var i = 0; i < cuadros.length; i++) {
+             var checkbox = cuadros[i].getElementsByTagName('input')[0];
+             var inputText1 = cuadros[i].getElementsByTagName('input')[1];
+             var inputText2 = cuadros[i].getElementsByTagName('input')[2];
+             var inputText3 = cuadros[i].getElementsByTagName('input')[3];
+
+             var boton1;
+
+             if (cuadros[i].id == 'CuadroDomicilio') {
+                 boton1 = cuadros[i].querySelector('#<%= btnDomicilio.ClientID %>');
+            } else if (cuadros[i].id == 'CuadroPunto') {
+                boton1 = cuadros[i].querySelector('#<%= btnpunto.ClientID %>');
+             }
+
+             if (cuadros[i].id == id) {
+                 checkbox.checked = true;
+                 inputText1.disabled = false;
+                 inputText2.disabled = false;
+                 inputText3.disabled = false;
+                 boton1.disabled = false;
+                 cuadros[i].style.opacity = 1;
+             } else {
+                 checkbox.checked = false;
+                 inputText1.disabled = true;
+                 inputText2.disabled = true;
+                 inputText3.disabled = true;
+                 boton1.disabled = true;
+                 cuadros[i].style.opacity = 0.5;
+             }
+         }
+     }
+ </script>
+
 
 </body>
 </html>
