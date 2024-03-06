@@ -87,7 +87,6 @@ C:\Users\cotan\Documents\VS Code\desproyectostif\desarrollodeproyectos\bin\es\Sy
 C:\Users\cotan\Documents\VS Code\desproyectostif\desarrollodeproyectos\bin\es\System.Web.Webpages.Razor.resources.dll
 C:\Users\cotan\Documents\VS Code\desproyectostif\desarrollodeproyectos\bin\es\System.Web.Helpers.resources.dll
 C:\Users\cotan\Documents\VS Code\desproyectostif\desarrollodeproyectos\bin\es\System.Web.Mvc.resources.dll
-C:\Users\cotan\Documents\VS Code\desproyectostif\desarrollodeproyectos\obj\Debug\desarrollodeproyectos.csproj.AssemblyReference.cache
 C:\Users\cotan\Documents\VS Code\desproyectostif\desarrollodeproyectos\obj\Debug\desarrollodeproyectos.csproj.CoreCompileInputs.cache
 C:\Users\cotan\Documents\VS Code\desproyectostif\desarrollodeproyectos\obj\Debug\desarrollodeproyectos.csproj.CopyComplete
 C:\Users\cotan\Documents\VS Code\desproyectostif\desarrollodeproyectos\obj\Debug\desarrollodeproyectos.dll

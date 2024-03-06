@@ -136,6 +136,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="forms\CatalagoTipoComida.aspx" />
     <Content Include="forms\CatalogoProductos.aspx" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -207,6 +208,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="forms\CatalagoTipoComida.aspx.cs">
+      <DependentUpon>CatalagoTipoComida.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\CatalagoTipoComida.aspx.designer.cs">
+      <DependentUpon>CatalagoTipoComida.aspx</DependentUpon>
+    </Compile>
     <Compile Include="forms\CatalogoProductos.aspx.cs">
       <DependentUpon>CatalogoProductos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -243,6 +251,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Img\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

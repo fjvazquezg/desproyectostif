@@ -9,7 +9,7 @@
 <link href="../Scripts/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../Scripts/css/bootstrap.rtl.css" rel="stylesheet" />
 <link href="../Scripts/css/bootstrap.rtl.min.css" rel="stylesheet" />
-    <title></title>
+    <title></title> 
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
@@ -39,11 +39,13 @@
                 <div class="row gx-4">
                     <div class="col" style="margin-right: 250px;" >
                     <label for="IdUsua" class="form-label mt-4 col">Id Usuario</label>
-                    <input type="text" readonly="" class="form-control" style="width: 140px;" id="IdUsua" placeholder="1" />
+                    <%--<input type="text" readonly="" class="form-control" style="width: 140px;" id="IdUsua" placeholder="1" />--%>
+                    <asp:TextBox ID="IdUsuar" runat="server" CssClass="form-control" ReadOnly="true" Width="140px"></asp:TextBox>
                     </div>
                     <div class="col" style="margin-left: -88%;" >
                     <label for="NombreUsua" class="form-label mt-4 col">Nombre del usuario</label>
-                    <input type="text" readonly="" class="form-control" id="NombreUsua" placeholder="Juan Lopez Lopez" />
+                    <%--<input type="text" readonly="" class="form-control" id="NombreUsua" placeholder="Juan Lopez Lopez" />--%>
+                    <asp:TextBox ID="NombreUsua" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                     </div>
                 </div>
                 </div>
@@ -51,42 +53,47 @@
                 <div class="row gx-4">
                     <div class="col" style="margin-right: 250px;">
                     <label for="IdProduc" class="form-label mt-4 col">Id Producto</label>
-                    <input type="text" readonly="" class="form-control" style="width: 140px;" id="IdProduc" placeholder="1" />
+                    <%--<input type="text" readonly="" class="form-control" style="width: 140px;" id="IdProduc" placeholder="1" />--%>
+                    <asp:TextBox ID="IdProduc" runat="server" ReadOnly="true" CssClass="form-control" Width="140px"></asp:TextBox>
                     </div>
                     <div class="col" style="margin-left: -88%;">
                     <label for="NombreProduc" class="form-label mt-4 col">Nombre del producto</label>
-                    <input type="text" class="form-control" id="NombreProduc" placeholder="Burritos de frijoles" />
+                    <asp:TextBox ID="NombreProduc" runat="server" CssClass="form-control" Placeholder="Burritos de frijoles"></asp:TextBox>
+                   <%-- <input type="text" class="form-control" id="NombreProduc" placeholder="Burritos de frijoles" />--%>
                     </div>
                 </div>
                 </div>
                 <div class="form-group">
-                <label class="form-label mt-4">Precio del producto</label>
+                <label for="PrecioProdu" class="form-label mt-4">Precio del producto</label>
                 <div class="form-group">
                     <div class="input-group mb-3">
                     <span class="input-group-text">$</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" />
+                    <%--<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" />--%>
+                    <asp:TextBox ID="PrecioProdu" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
                 </div>
                 <div class="form-group">
-                <label class="form-label mt-4">Stock minimo</label>
+                <label for="StockMin" class="form-label mt-4">Stock minimo</label>
                 <div class="form-group">
                     <div class="input-group mb-3">
-                    <input type="text" class="form-control" />
+                    <%--<input type="text" class="form-control" />--%>
+                    <asp:TextBox ID="StockMin" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
                 </div>
                 <div class="form-group">
-                <label class="form-label mt-4">Stock maximo</label>
+                <label for="StockMax" class="form-label mt-4">Stock maximo</label>
                 <div class="form-group">
                     <div class="input-group mb-3">
-                    <input type="text" class="form-control" />
+                    <%--<input type="text" class="form-control" />--%>
+                    <asp:TextBox ID="StockMax" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
                 </div>
                 <div class="form-group">
                   <label for="SeleccionProduc" class="form-label mt-4">Tipo de comida</label>
-                  <select class="form-select" id="SeleccionProduc">
+<%--                  <select class="form-select" id="SeleccionProduc">
                     <option>Torta(s)</option>
                     <option>Burrito(s)</option>
                     <option>Quesadilla(s)</option>
@@ -95,21 +102,25 @@
                     <option>Refresco</option>
                     <option>Snack</option>
                     <option>Otro</option>
-                  </select>
+                  </select>--%>
+                    <asp:DropDownList ID="Seleccion" runat="server" CssClass="form-select"></asp:DropDownList>
                 </div>
                 <div class="form-group">
                   <label for="DescripcionProduc" class="form-label mt-4">Descripción</label>
-                  <textarea class="form-control" id="DescripcionProduc" rows="3"></textarea>
+                  <%--<textarea class="form-control" id="DescripcionProduc" rows="3"></textarea>--%>
+                    <asp:TextBox ID="DescripcionProduc" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="form-group" style="margin-right: 4%;">
                   <label for="ImgFile" class="form-label mt-4">Imagen del producto</label>
-                  <input class="form-control" style="margin-bottom: 20px;" type="file" id="ImgFile" />
-                  <div id="preview" class="styleImage" ></div>
+                  <%--<input class="form-control" style="margin-bottom: 20px;" type="file" id="ImgFile" />--%>
+                  <asp:FileUpload ID="ImgFile" runat="server" CssClass="form-control" Style="margin-bottom: 20px" accept="image/png,image/jpeg"/>
+                    <asp:Image  ID="Preview" ImageUrl="imageurl" runat="server" />
+                  <%--<div id="preview" class="styleImage" ></div>--%>
                 </div>
                 <script src="../Js/main.js"></script>
                 <br/>
-                <button type="button" class="btn btn-success" style="margin-right: 50px; width: 150px;" >Registrar</button>
-                <button type="button" class="btn btn-danger" style="width: 150px;" >Cancelar</button>
+                <asp:button ID="BtnRegistrar" Text="Registrar" type="button" class="btn btn-success" runat="server" style="margin-right: 50px; width: 150px;" OnClick="BtnRegistrar_Click"></asp:button>
+                <asp:button ID="BtnCancelar" Text="Cancelar" type="button" class="btn btn-danger" runat="server" style="width: 150px;" ></asp:button>
          </fieldset>
       </div>
     </div>
