@@ -91,3 +91,4 @@ C:\Users\cotan\Documents\VS Code\desproyectostif\desarrollodeproyectos\obj\Debug
 C:\Users\cotan\Documents\VS Code\desproyectostif\desarrollodeproyectos\obj\Debug\desarrollodeproyectos.csproj.CopyComplete
 C:\Users\cotan\Documents\VS Code\desproyectostif\desarrollodeproyectos\obj\Debug\desarrollodeproyectos.dll
 C:\Users\cotan\Documents\VS Code\desproyectostif\desarrollodeproyectos\obj\Debug\desarrollodeproyectos.pdb
+C:\Users\cotan\Documents\VS Code\desproyectostif\desarrollodeproyectos\obj\Debug\desarrollodeproyectos.csproj.AssemblyReference.cache

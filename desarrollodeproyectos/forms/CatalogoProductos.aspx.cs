@@ -20,6 +20,7 @@ namespace desarrollodeproyectos.forms
             {
                 IdUsuar.Text = "1";
                 NombreUsua.Text = "Juan Lopez Lopez";
+                lblError.Visible = false;
                 CargarConsecutivo();
                 CargaTipoComida();
             }
@@ -86,16 +87,14 @@ namespace desarrollodeproyectos.forms
         {
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connDB"].ConnectionString))
             {
-                //string sRuta = "C:/Users/cotan/Documents/VS Code/desproyectostif/desarrollodeproyectos/Img/";
                 string fileName = "";
                 string filePath = "";
+                string rutaImg = "";
                 if (ImgFile != null)
                 {
-                    //sRuta = ImgFile.FileName;
-                    //ImgFile.SaveAs(Server.MapPath(sRuta));
-
                     fileName = Path.GetFileName(ImgFile.FileName);
-                    filePath = Server.MapPath("~/Img/") + fileName;
+                    rutaImg = "../Img/ProdImg/" + fileName;
+                    filePath = Server.MapPath("~/Img/ProdImg/") + fileName;
                     ImgFile.SaveAs(filePath);
                 }
                 SqlCommand cmd = new SqlCommand();
@@ -108,7 +107,7 @@ namespace desarrollodeproyectos.forms
                 cmd.Parameters.Add("@PROD_StockMin", SqlDbType.Int).Value = StockMin.Text.Trim();
                 cmd.Parameters.Add("@PROD_StockMax", SqlDbType.Int).Value = StockMax.Text.Trim();
                 cmd.Parameters.Add("@PROD_TipoComida", SqlDbType.Int).Value = Seleccion.SelectedValue;
-                cmd.Parameters.Add("@PROD_URLImga", SqlDbType.VarChar).Value = filePath.ToString();
+                cmd.Parameters.Add("@PROD_URLImga", SqlDbType.VarChar).Value = rutaImg;
                 cmd.Parameters.Add("@PROD_IdUsuario", SqlDbType.Int).Value = IdUsuar.Text.Trim();
                 cmd.Connection = conn;
 
@@ -134,21 +133,20 @@ namespace desarrollodeproyectos.forms
             DescripcionProduc.Text = "";
         }
 
+
         protected void BtnRegistrar_Click(object sender, EventArgs e)
         {
-            RegistrarProducto();
-            ClearTodo();
-            CargarConsecutivo();
+            if (NombreProduc.Text == "" || PrecioProdu.Text == "" || StockMin.Text == "" || StockMax.Text == "" || DescripcionProduc.Text == "" || ImgFile == null)
+            {
+                lblError.Visible = true;
+                lblError.Text = "Faltan datos por llenar, porfavor de rellenarlos";
+            }
+            else
+            {
+                RegistrarProducto();
+                ClearTodo();
+                CargarConsecutivo();
+            }
         }
-
-
-        /*using (SqlConnection conn = new SqlConnection (ConfigurationManager.ConnectionStrings["connDB"].ConnectionString))
-                {
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "";
-                    cmd.Connection = conn;
-                    conn.Open();
-                }*/
     }
 }

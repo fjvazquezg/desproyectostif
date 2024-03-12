@@ -79,9 +79,17 @@ namespace desarrollodeproyectos.forms
 
         protected void BtnRegistrar_Click(object sender, EventArgs e)
         {
-            RegistrarTC();
-            ClearTodo();
-            CargarConsecutivo();
+            if (NombreTipoComida.Text == "")
+            {
+                lblError.Visible = true;
+                lblError.Text = "Falta el nombre de la comida";
+            }
+            else
+            {
+                RegistrarTC();
+                ClearTodo();
+                CargarConsecutivo();
+            }
         }
     }
 }

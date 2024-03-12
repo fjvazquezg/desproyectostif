@@ -36,6 +36,7 @@
       <div class="col-md-40">
             <fieldset>
                 <div class="form-group">
+                    <asp:Label ID="lblError" runat="server" Visible="false" Text="" ForeColor="Red"></asp:Label>
                 <div class="row gx-4">
                     <div class="col" style="margin-right: 250px;" >
                     <label for="IdUsua" class="form-label mt-4 col">Id Usuario</label>

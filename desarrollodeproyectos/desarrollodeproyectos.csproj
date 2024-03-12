@@ -251,7 +251,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Img\" />
+    <Folder Include="Img\ProdImg\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
