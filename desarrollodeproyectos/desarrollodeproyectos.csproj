@@ -136,6 +136,8 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="forms\RegistroVendedor.aspx" />
+    <Content Include="forms\RegistroUsu.aspx" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -205,6 +207,20 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forms\RegistroVendedor.aspx.cs">
+      <DependentUpon>RegistroVendedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\RegistroVendedor.aspx.designer.cs">
+      <DependentUpon>RegistroVendedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forms\RegistroUsu.aspx.cs">
+      <DependentUpon>RegistroUsu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\RegistroUsu.aspx.designer.cs">
+      <DependentUpon>RegistroUsu.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
