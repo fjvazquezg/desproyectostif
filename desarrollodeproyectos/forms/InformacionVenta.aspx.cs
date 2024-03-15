@@ -13,66 +13,85 @@ namespace desarrollodeproyectos.forms
         {
             if (!IsPostBack)
             {
-                // Utiliza using para garantizar la liberación de recursos, incluida la conexión
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connDB"].ConnectionString))
                 {
-                    // Utiliza un try-catch para manejar posibles excepciones
                     try
                     {
-                        // Nombre del procedimiento almacenado
-                        string storedProcedureName = "ObtenerInformacionProductos";
+                        string storedProcedureName = "SP_PRODUCTO";
 
-                        // Crea el comando con el tipo de comando como StoredProcedure
                         using (SqlCommand cmd = new SqlCommand(storedProcedureName, conn))
                         {
-                            // Establece el tipo de comando como StoredProcedure
                             cmd.CommandType = CommandType.StoredProcedure;
+                            SqlParameter paramOP = new SqlParameter("@OP", SqlDbType.TinyInt);
+                            paramOP.Value = 3;
+                            cmd.Parameters.Add(paramOP);
 
-                            // Abre la conexión dentro del bloque using
                             conn.Open();
 
-                            // Utiliza un DataReader para obtener los resultados del procedimiento almacenado
                             using (SqlDataReader reader = cmd.ExecuteReader())
                             {
-                                // Crear una tabla para almacenar los datos de productos específicos
-                                DataTable dt = new DataTable();
-                                dt.Load(reader);
-
-                                // Crear una nueva tabla solo con las columnas deseadas
-                                DataTable dtReduced = new DataTable();
-                                dtReduced.Columns.Add("ID", typeof(int));
-                                dtReduced.Columns.Add("Nombre", typeof(string));
-                                dtReduced.Columns.Add("Precio", typeof(decimal));
-
-                                // Copiar los datos de la tabla original a la nueva tabla
-                                foreach (DataRow row in dt.Rows)
+                                if (reader.HasRows)
                                 {
-                                    dtReduced.Rows.Add(row["ID"], row["Nombre"], row["Precio"]);
-                                }
+                                    DataTable dt = new DataTable();
+                                    dt.Load(reader);
 
-                                // Asigna la nueva tabla al control Repeater
-                                rptProductos.DataSource = dtReduced;
-                                rptProductos.DataBind();
+                                    rptProductos.DataSource = dt;
+                                    rptProductos.DataBind();  // Llama a la función ConvertToUrl dentro del Repeater
+                                }
+                                else
+                                {
+                                    lblMensaje.Text = "No se encontraron datos de productos.";
+                                    lblMensaje.Visible = true;
+                                }
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        // Manejar la excepción, ya sea imprimir mensajes o registrarla
                         Console.WriteLine("Error al ejecutar el procedimiento almacenado: " + ex.Message);
+                        lblMensaje.Text = "Error al cargar la información de productos. Consulta el registro para obtener más detalles.";
+                        lblMensaje.Visible = true;
                     }
                 }
             }
         }
 
+        // Llama a la función ConvertToUrl dentro del Repeater para obtener la URL de las imágenes
+        protected void rptProductos_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                DataRowView rowView = (DataRowView)e.Item.DataItem;
+                string imageUrl = (string)rowView["PROD_URLImga"]; // Se asume que "PROD_URLImga" es la columna que contiene la ruta de la imagen
+                Image imgProducto = (Image)e.Item.FindControl("imgProducto");
+                imgProducto.ImageUrl = ConvertToUrl(imageUrl);
+            }
+        }
+
+        protected string ConvertToUrl(object imageData)
+        {
+            if (imageData != null && imageData != DBNull.Value && imageData is string)
+            {
+                // La imageData ya es una cadena de caracteres (string) que contiene la ruta de la imagen
+                string imageUrl = (string)imageData;
+
+                // Devuelve la URL de la imagen directamente
+                return imageUrl;
+            }
+
+            // Si la imageData no es válida, proporciona una URL de imagen predeterminada
+            return ResolveUrl("~/img/placeholder.jpg");
+        }
+
+
+
+
+        // Función para manejar el evento ItemCommand del Repeater
         protected void rptProductos_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             if (e.CommandName == "VerDetalles")
             {
-                // Obtener el ID del producto de la propiedad CommandArgument
                 string productId = e.CommandArgument.ToString();
-
-                // Redirigir a la página de detalles (InfoProducto.aspx)
                 Response.Redirect($"InfoProducto.aspx?id={productId}");
             }
         }

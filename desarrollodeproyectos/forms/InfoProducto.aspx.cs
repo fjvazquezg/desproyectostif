@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 
@@ -10,62 +11,46 @@ namespace desarrollodeproyectos.forms
         {
             if (!IsPostBack)
             {
-                // Utiliza using para garantizar la liberación de recursos, incluida la conexión
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connDB"].ConnectionString))
+                // Obtener el ID del producto de la URL
+                string productId = Request.QueryString["id"];
+
+                // Verificar si se proporcionó un ID válido
+                if (!string.IsNullOrEmpty(productId))
                 {
-                    // Utiliza un try-catch para manejar posibles excepciones
-                    try
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connDB"].ConnectionString))
                     {
-                        // Obtén el ID del producto desde la consulta de la URL
-                        if (Request.QueryString["id"] != null)
+                        using (SqlCommand cmd = new SqlCommand("SP_PRODUCTO", conn))
                         {
-                            string productId = Request.QueryString["id"];
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@OP", 3); // Obtener todos los datos de productos
+                            cmd.Parameters.AddWithValue("@PROD_Id", productId); // ID del producto deseado
+                            
 
-                            // Crea la consulta SQL directamente
-                            string query = $"SELECT P.ID AS 'ID Producto', P.Nombre AS 'Nombre', P.Precio AS 'Precio', " +
-                                           $"P.Descripcion AS 'Descripcion', P.Stock AS 'Stock', I.Ruta AS 'Ruta Imagen' " +
-                                           $"FROM Productos P LEFT JOIN Imagenes I ON P.ID = I.ProductoID " +
-                                           $"WHERE P.ID = {productId}";
+                            conn.Open();
 
-                            // Crea el comando con la consulta SQL y asigna la conexión al comando
-                            using (SqlCommand cmd = new SqlCommand(query, conn))
+                            using (SqlDataReader reader = cmd.ExecuteReader())
                             {
-                                // Abre la conexión dentro del bloque using
-                                conn.Open();
-
-                                // Utiliza un DataReader para obtener los resultados de la consulta
-                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                if (reader.Read())
                                 {
-                                    // Verifica si hay datos antes de intentar leer
-                                    if (reader.Read())
-                                    {
-                                        // Asigna los datos a las etiquetas o controles de tu página InfoProducto.aspx
-                                        lblNombre.InnerText = reader["Nombre"].ToString();
-                                        lblDescripcion.InnerText = reader["Descripcion"].ToString();
-                                        lblPrecio.InnerText = reader["Precio"].ToString();
-                                        lblStock.InnerText = reader["Stock"].ToString();
-                                        mainImage.Src = reader["Ruta Imagen"].ToString();
-                                    }
-                                    else
-                                    {
-                                        // Manejar el caso en que no se encuentren datos para el ID proporcionado
-                                        // Puedes redirigir a una página de error o imprimir un mensaje adecuado
-                                        Response.Write("Producto no encontrado.");
-                                    }
+                                    // Asignar los datos del producto a las etiquetas o controles de la página
+                                    lblNombre.InnerText = reader["PROD_Nombre"].ToString();
+                                    lblPrecio.InnerText = reader["PROD_Precio"].ToString();
+                                    lblStock.InnerText = reader["PROD_StockMin"].ToString();
+                                    mainImage.Src = reader["PROD_URLImga"].ToString();
+                                }
+                                else
+                                {
+                                    // Manejar el caso en que el producto no sea encontrado
+                                    Response.Write("Producto no encontrado.");
                                 }
                             }
                         }
-                        else
-                        {
-                            // Manejar el caso en que no se proporciona un parámetro ID en la URL
-                            Response.Write("Falta el parámetro de ID en la URL.");
-                        }
                     }
-                    catch (Exception ex)
-                    {
-                        // Manejar la excepción, ya sea imprimir mensajes o registrarla
-                        Console.WriteLine("Error al ejecutar la consulta SQL: " + ex.Message);
-                    }
+                }
+                else
+                {
+                    // Manejar el caso en que no se proporcionó un ID de producto válido en la URL
+                    Response.Write("Falta el parámetro de ID en la URL.");
                 }
             }
         }

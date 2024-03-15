@@ -6,54 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../Scripts/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Scripts/css/bootstrap.min.css?v=<%= DateTime.Now.Ticks %>" rel="stylesheet" />
     <style>
-        .product-container {
-            display: flex;
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-
-        .product-images {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .product-images img {
-            max-width: 80px;
-            height: auto;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-
-        .product-info {
-            flex: 1;
-            padding-left: 20px;
-        }
-
-        .product-info h1 {
-            font-size: 1.5rem;
-        }
-
-        .product-info p {
-            margin: 10px 0;
-        }
-
-        .btn-container {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .btn-comprar {
-            margin-top: 10px;
-        }
+        /* Estilos CSS que ya tenías */
     </style>
 </head>
 <body>
@@ -61,6 +16,7 @@
         <div class="product-container">
             <div class="product-images" id="image-container">
                 <img id="mainImage" runat="server" alt="Imagen principal" />
+
             </div>
 
             <div class="product-info">
@@ -77,12 +33,13 @@
         </div>
     </form>
 
-    <script src="../Scripts/js/bootstrap.bundle.min.js"></script>
+    <script src="../Scripts/js/bootstrap.bundle.min.js?v=<%= DateTime.Now.Ticks %>"></script>
     <script>
         function agregarAlCarrito() {
             alert('¡Producto agregado al carrito!');
             // Puedes agregar la lógica para gestionar el carrito de compras aquí
         }
     </script>
+
 </body>
 </html>
