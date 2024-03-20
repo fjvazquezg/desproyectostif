@@ -15,6 +15,24 @@ namespace desarrollodeproyectos
     {
 
         /// <summary>
+        /// Control GridViewCarrito.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewCarrito;
+
+        /// <summary>
+        /// Control lblTotalPagar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalPagar;
+
+        /// <summary>
         /// Control btnPagar.
         /// </summary>
         /// <remarks>
