@@ -1,0 +1,14 @@
+﻿body {
+}
+
+.cuadro {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: 1rem;
+    background-color: white; /* Color inicial del cuadro */
+}
+
+.cuadro:active {
+   background-color: rgb(216, 214, 214); /* Color del cuadro cuando se hace clic en él */
+}
