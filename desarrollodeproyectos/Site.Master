@@ -69,14 +69,19 @@
           <button class="btn btn-primary" type="submit">Search</button>
 
        <!-- Botón de filtrar con imagen pequeña -->
-            <button class="btn btn-primary" type="button" onclick="filtrarClick()">
-                <img src="../Img/Iconos/filtrar.png" style="width: 30px; height: 30px;"> Filtrar
-            </button>
-            
+            <asp:LinkButton ID="LinkButton1" CssClass="btn btn-primary" runat="server" Text="Carrito" PostBackUrl="~/forms/Filtro.aspx">
+            <img src="../Img/Iconos/filtrar.png"" style="width: 30px; height: 30px;" />
+          
+            </asp:LinkButton>
         <!-- Botón del carrito con imagen pequeña -->
-          <button class="btn btn-primary" type="button" onclick="carritoClick()">
+          <%--<button class="btn btn-primary" type="button" onclick="carritoClick()">
             <img src="../Img/Iconos/carrito-de-supermercado.png" style="width: 30px; height: 30px;"> Carrito
-          </button>
+              
+          </button>--%>
+          <asp:LinkButton ID="lnkCarrito" CssClass="btn btn-primary" runat="server" Text="Carrito" PostBackUrl="~/forms/Carrito_compras.aspx">
+            <img src="../Img/Iconos/carrito-de-supermercado.png" style="width: 30px; height: 30px;" />
+        </asp:LinkButton>
+
 
         </form>
       </div>
@@ -90,18 +95,6 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous"></script>
 
-  <script>
-      // Funciones de clic para los botones5
-      function filtrarClick() {
-          // Redirige a la página de filtrar.html
-          window.location.href = 'filtrar.html';
-      }
-
-      function carritoClick() {
-          // Redirige a la página de carrito.html
-          window.location.href = 'carrito.html';
-      }
-  </script>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
@@ -114,3 +107,5 @@
     </form>
 </body>
 </html>
+
+x

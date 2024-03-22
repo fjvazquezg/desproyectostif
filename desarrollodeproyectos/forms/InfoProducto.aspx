@@ -9,15 +9,24 @@
         <div class="row">
             <asp:Repeater ID="InfoProducto1" runat="server">
                 <ItemTemplate>
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-6 mb-4">
                         <div class="card border-primary mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title"><%# Eval("PROD_Nombre") %></h5>
-                                <asp:Image ID="imgProducto" runat="server" ImageUrl='<%# Eval("PROD_URLImga") %>' AlternateText="Producto" CssClass="img-fluid" data-toggle="modal" data-target="#myModal" />
-                                <p class="card-text">Precio: $<%# Eval("PROD_Precio") %></p>  
-                                 <asp:Label ID="lbldescripcion" runat="server" Visible="false"></asp:Label>
-                                <asp:Label ID="lblStockMin" runat="server" Visible="false"></asp:Label> 
-                               
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <asp:Image ID="imgProducto" runat="server" ImageUrl='<%# Eval("PROD_URLImga") %>' AlternateText="Producto" CssClass="img-fluid rounded-start" data-toggle="modal" data-target="#myModal" />
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><%# Eval("PROD_Nombre") %></h5>
+                                        <p class="card-text">Precio: $<%# Eval("PROD_Precio") %></p>
+                                        <div>
+                                            <asp:Label ID="lbldescripcion" runat="server" Visible="false" CssClass="d-inline-block mr-2"></asp:Label>
+                                            <asp:Label ID="lblStockMin" runat="server" Visible="false" CssClass="d-inline-block"></asp:Label>
+                                        </div>
+                                        <asp:HyperLink ID="btnComprar" runat="server" NavigateUrl="Carrito_compras.aspx" CssClass="btn btn-primary me-2" Text="Comprar" />
+                                        <asp:HyperLink ID="btnAgregarCarrito" runat="server" NavigateUrl="Carrito_compras.aspx" CssClass="btn btn-outline-primary" Text="Agregar al Carrito" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div> 
