@@ -12,7 +12,7 @@
     <title></title> 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <%--<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
          <div class="d-flex justify-content-between align-items-center">
             
             <a href="#" >
@@ -28,10 +28,10 @@
             <h1 class="navbar-brand">Registro de productos</h1>
              
         </div>
-    </nav>
+    </nav>--%>
     <form id="form1" runat="server">
         <div>
-            <div class="container">
+            <div class="container card shadow" style="padding: 3%; margin-top: 3%;" >
     <div class="row justify-content-center">
       <div class="col-md-40">
             <fieldset>
@@ -107,15 +107,38 @@
                     <asp:DropDownList ID="Seleccion" runat="server" CssClass="form-select"></asp:DropDownList>
                 </div>
                 <div class="form-group">
+                    <label for="EnUsoOno" class="form-label mt-4">Estado en el que se encuentra la producción del producto</label>
+                  <%--<label for="SeleccionProduc" class="form-label mt-4">Tipo de comida</label>
+                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-select"></asp:DropDownList>--%>
+                    <asp:DropDownList ID="EnUsoOno" runat="server" CssClass="form-select">
+                        <asp:ListItem Text="Activo" Value="1"></asp:ListItem>
+                        <asp:ListItem Text="Desactivado" Value="0"></asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <div class="form-group">
                   <label for="DescripcionProduc" class="form-label mt-4">Descripción</label>
                   <%--<textarea class="form-control" id="DescripcionProduc" rows="3"></textarea>--%>
                     <asp:TextBox ID="DescripcionProduc" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="form-group" style="margin-right: 4%;">
-                  <label for="ImgFile" class="form-label mt-4">Imagen del producto</label>
+                  <label for="Logo" class="form-label mt-4">Logo del producto</label>
                   <%--<input class="form-control" style="margin-bottom: 20px;" type="file" id="ImgFile" />--%>
-                  <asp:FileUpload ID="ImgFile" runat="server" CssClass="form-control" Style="margin-bottom: 20px" accept="image/png,image/jpeg"/>
-                    <asp:Image  ID="Preview" ImageUrl="imageurl" runat="server" />
+                  <asp:FileUpload ID="Logo" runat="server" CssClass="form-control" Style="margin-bottom: 20px" accept="image/png,image/jpeg"/>
+                    <asp:Image  ID="Preview" ImageUrl="imageurl" runat="server" Width="400px" Height="400px"/>
+                  <%--<div id="preview" class="styleImage" ></div>--%>
+                </div>
+                <div class="form-group" style="margin-right: 4%;">
+                  <label for="ImagenPromo1" class="form-label mt-4">Imagen promocional 1 del producto</label>
+                  <%--<input class="form-control" style="margin-bottom: 20px;" type="file" id="ImgFile" />--%>
+                  <asp:FileUpload ID="ImagenPromo1" runat="server" CssClass="form-control" Style="margin-bottom: 20px" accept="image/png,image/jpeg"/>
+                    <asp:Image  ID="Previewb" ImageUrl="imageurl" runat="server" Width="400px" Height="400px"/>
+                  <%--<div id="preview" class="styleImage" ></div>--%>
+                </div>
+                <div class="form-group" style="margin-right: 4%;">
+                  <label for="ImagenPromo2" class="form-label mt-4">Imagen promocional 2 del producto</label>
+                  <%--<input class="form-control" style="margin-bottom: 20px;" type="file" id="ImgFile" />--%>
+                  <asp:FileUpload ID="ImagenPromo2" runat="server" CssClass="form-control" Style="margin-bottom: 20px" accept="image/png,image/jpeg"/>
+                    <asp:Image  ID="Previewc" ImageUrl="imageurl" runat="server" Width="400px" Height="400px"/>
                   <%--<div id="preview" class="styleImage" ></div>--%>
                 </div>
                 <script src="../Js/main.js"></script>
