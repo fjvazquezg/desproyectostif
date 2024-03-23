@@ -7,12 +7,21 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace desarrollodeproyectos
+namespace desarrollodeproyectos.forms
 {
 
 
-    public partial class SiteMaster
+    public partial class FiltroEnLasVentas
     {
+
+        /// <summary>
+        /// Control form1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
         /// Control RepeaterProductos.
@@ -24,21 +33,21 @@ namespace desarrollodeproyectos
         protected global::System.Web.UI.WebControls.Repeater RepeaterProductos;
 
         /// <summary>
-        /// Control lnkCarrito.
+        /// Control txtPrecioMin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkCarrito;
+        protected global::System.Web.UI.WebControls.TextBox txtPrecioMin;
 
         /// <summary>
-        /// Control MainContent.
+        /// Control txtPrecioMax.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.TextBox txtPrecioMax;
     }
 }
