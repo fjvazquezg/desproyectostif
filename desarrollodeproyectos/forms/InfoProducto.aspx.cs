@@ -3,10 +3,13 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.UI.WebControls;
+using System.Collections.Generic; // Para List<>
+
 
 
 namespace desarrollodeproyectos.forms
 {
+
     public partial class InfoProducto : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -46,7 +49,7 @@ namespace desarrollodeproyectos.forms
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         SqlParameter paramOP = new SqlParameter("@OP", SqlDbType.TinyInt);
-                        paramOP.Value = 4; // Consultar solo un producto por ID
+                        paramOP.Value = 6; // Consultar solo un producto por ID
                         cmd.Parameters.Add(paramOP);
 
                         SqlParameter paramProductId = new SqlParameter("@PROD_Id", SqlDbType.Int);
@@ -69,9 +72,9 @@ namespace desarrollodeproyectos.forms
                                 if (dt.Rows.Count > 0)
                                 {
                                     DataRow row = dt.Rows[0];
-                                    Label lblStockMin = (Label)InfoProducto1.Items[0].FindControl("lblStockMin");
-                                    lblStockMin.Text = "Stock Mínimo: " + row["PROD_StockMin"].ToString();
-                                    lblStockMin.Visible = true;
+                                    //Label lblStockMin = (Label)InfoProducto1.Items[0].FindControl("lblStockMin");
+                                    //lblStockMin.Text = "Stock Mínimo: " + row["PROD_StockMin"].ToString();
+                                    //lblStockMin.Visible = true;
 
                                     Label lbldescripcion = (Label)InfoProducto1.Items[0].FindControl("lbldescripcion");
                                     lbldescripcion.Text = "Descripcion: " + row["PROD_Descripcion"].ToString();
@@ -93,6 +96,8 @@ namespace desarrollodeproyectos.forms
                     lblMensaje.Visible = true;
                 }
             }
+
         }
     }
+
 }

@@ -23,7 +23,7 @@ namespace desarrollodeproyectos.forms
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
                             SqlParameter paramOP = new SqlParameter("@OP", SqlDbType.TinyInt);
-                            paramOP.Value = 3;
+                            paramOP.Value = 5;
                             cmd.Parameters.Add(paramOP);
 
                             conn.Open();
