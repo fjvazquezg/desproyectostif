@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Inventario</title>
+    <link rel="stylesheet" href="Control.Estilos.css"> 
+</head>
+<body>
+    <div class="container">
+        <h1>Control de Inventario</h1>
+        
+        <h2>Registrar el nuevo producto</h2>
+        <form id="formularioProducto">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+            
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" name="precio" required><br><br>
+            
+            <label for="stock">Stock:</label>
+            <input type="number" id="stock" name="stock" required><br><br>
+            
+            <label for="imagen">Imagen (URL):</label>
+            <input type="text" id="imagen" name="imagen" required><br><br>
+            
+            <button type="submit">Registrar Producto</button>
+
+        </form>
+        
+
+        <div class="productos">
+            <!-- Aquí se mostrarán los productos -->
+        </div>
+    </div>
+
+    <script>
+        const productos = [
+            { nombre: "Producto 1", precio: 50.00, stock: 100, imagen: "https://cdn2.cocinadelirante.com/680x400/filters:format(jpg):quality(75)/sites/default/files/images/2022/12/burritos_0.jpg" },
+            { nombre: "Producto 2", precio: 40.90, stock: 50, imagen: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/15-09-26-RalfR-WLC-0098_-_Coca-Cola_glass_bottle_%28Germany%29.jpg/800px-15-09-26-RalfR-WLC-0098_-_Coca-Cola_glass_bottle_%28Germany%29.jpg" },
+            { nombre: "Producto 3", precio: 30.00, stock: 75, imagen: "https://www.grillhouse.mx/cdn/shop/products/Sabritasoriginales160g_800x.jpg?v=1636072698" }
+        ];
+
+        function mostrarProductos() {
+            const contenedorProductos = document.querySelector('.productos');
+            contenedorProductos.innerHTML = ''; // Limpiar el contenedor antes de agregar productos
+
+            productos.forEach(producto => {
+                const productoHTML = `
+                    <div class="producto">
+                        <img src="${producto.imagen}" alt="${producto.nombre}">
+                        <h2>${producto.nombre}</h2>
+                        <p>Precio: ${producto.precio}</p>
+                        <p>Stock: ${producto.stock}</p>
+                    </div>
+                `;
+                contenedorProductos.innerHTML += productoHTML;
+            });
+        }
+
+        function registrarProducto(event) {
+            event.preventDefault(); 
+
+            const formulario = document.getElementById('formularioProducto');
+            const nombre = formulario.nombre.value;
+            const precio = parseFloat(formulario.precio.value);
+            const stock = parseInt(formulario.stock.value);
+            const imagen = formulario.imagen.value;
+
+            
+            productos.push({ nombre, precio, stock, imagen });
+
+            formulario.reset();
+
+           
+            mostrarProductos();
+        }
+
+        window.onload = function() {
+            mostrarProductos();
+            const formulario = document.getElementById('formularioProducto');
+            formulario.addEventListener('submit', registrarProducto);
+        };
+    </script>
+</body>
+</html>
