@@ -5,6 +5,11 @@
 
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <div class="container mt-4">
+    </head>
+    <body>
+        <p>Si deseas ver las políticas del sitio, haz clic en el siguiente enlace:</p>
+        <a href="PoliticasWebsite.aspx">Ver Políticas del Sitio</a>
+    </body>
         <h1>Bienvenido a Tu Tienda en Línea</h1>
         <div class="row">
             <asp:Repeater ID="rptProductos" runat="server" OnItemDataBound="rptProductos_ItemDataBound">
