@@ -72,7 +72,7 @@ namespace desarrollodeproyectos.forms
                                 if (dt.Rows.Count > 0)
                                 {
                                     DataRow row = dt.Rows[0];
-                                    //Label lblStockMin = (Label)InfoProducto1.Items[0].FindControl("lblStockMin");
+                                     //Label lblStockMin = (Label)InfoProducto1.Items[0].FindControl("lblStockMin");
                                     //lblStockMin.Text = "Stock Mínimo: " + row["PROD_StockMin"].ToString();
                                     //lblStockMin.Visible = true;
 

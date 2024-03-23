@@ -40,7 +40,7 @@ namespace desarrollodeproyectos.forms
                                 }
                                 else
                                 {
-                                    lblMensaje.Text = "No se encontraron datos de productos.";
+                                     lblMensaje.Text = "No se encontraron datos de productos.";
                                     lblMensaje.Visible = true;
                                 }
                             }

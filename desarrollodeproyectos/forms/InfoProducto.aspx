@@ -17,7 +17,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h5 class="card-title"><%# Eval("PROD_Nombre") %></h5>
+                                        <h5 class="card-title"><%# Eval("PROD_Nombre") %> </h5>
                                         <p class="card-text">Precio: $<%# Eval("PROD_Precio") %></p>
                                         <div class="mb-3">
                                             <label for="cantidadAlimentos" class="form-label">Cantidad:</label>
