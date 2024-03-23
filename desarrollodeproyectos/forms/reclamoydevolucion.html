@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Reclamos y Devoluciones</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Reclamos y Devoluciones</h2>
+        <form action="#" method="post" id="formulario">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            
+            <label for="email">Email / Teléfono:</label>
+            <input type="text" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|^\d{10,}$" required>
+            
+            <label for="tipo">Tipo:</label>
+            <select id="tipo" name="tipo" required>
+                <option value="reclamo">Reclamo</option>
+                <option value="devolucion">Devolución</option>
+            </select>
+            
+            <label for="productos">Productos a reclamar:</label>
+            <table id="productos">
+                <tr>
+                    <th>Producto</th>
+                    <th>Seleccionar</th>
+                </tr>
+                <tr>
+                    <td>Producto 1</td>
+                    <td><input type="checkbox" name="producto1"></td>
+                </tr>
+                <tr>
+                    <td>Producto 2</td>
+                    <td><input type="checkbox" name="producto2"></td>
+                </tr>
+                <!-- Agrega más filas según la cantidad de productos -->
+            </table>
+            
+            <label for="mensaje">Motivo:</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+            
+            <button type="submit">Enviar</button>
+        </form>
+        <div id="mensaje-enviado" style="display: none;">
+            <p id="mensaje-texto"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formulario').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            
+            var tipo = document.getElementById('tipo').value;
+            var mensaje = tipo === 'reclamo' ? 'Reclamo enviado' : 'Devolución enviada';
+            document.getElementById('mensaje-texto').innerText = mensaje;
+            document.getElementById('mensaje-enviado').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
