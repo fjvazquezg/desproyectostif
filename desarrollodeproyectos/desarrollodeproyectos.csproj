@@ -44,6 +44,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -138,6 +144,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="forms\CatalagoTipoComida.aspx" />
     <Content Include="forms\CatalogoProductos.aspx" />
+    <Content Include="forms\Publicidad.html" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -148,7 +155,15 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Img\ProdImg\baguette.jpg" />
+    <Content Include="Img\ProdImg\burritos.jpg" />
+    <Content Include="Img\ProdImg\hamburguesa.jpg" />
+    <Content Include="Img\ProdImg\pollo.jpg" />
+    <Content Include="Img\ProdImg\sandwich.jpg" />
+    <Content Include="Img\ProdImg\sushi..jpg" />
+    <Content Include="Img\ProdImg\torta.jpg" />
     <Content Include="Js\main.js" />
+    <Content Include="forms\publicidad en el sitio.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -225,7 +240,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\ImagenBanner.cs" />
+    <Compile Include="Modelos\suscripcion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="forms\publicidad en el sitio.aspx.cs">
+      <DependentUpon>publicidad en el sitio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\publicidad en el sitio.aspx.designer.cs">
+      <DependentUpon>publicidad en el sitio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -251,7 +275,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Img\ProdImg\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
