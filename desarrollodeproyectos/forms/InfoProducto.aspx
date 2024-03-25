@@ -5,6 +5,11 @@
 
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <div class="container mt-4">
+    </head>
+    <body>
+        <p>Si deseas ver las políticas del sitio, haz clic en el siguiente enlace:</p>
+        <a href="PoliticasWebsite.aspx">Ver Políticas del Sitio</a>
+    </body>
         <h1>Detalles del Producto</h1>
         <div class="row">
             <asp:Repeater ID="InfoProducto1" runat="server">
@@ -17,14 +22,14 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h5 class="card-title"><%# Eval("PROD_Nombre") %></h5>
+                                        <h5 class="card-title"><%# Eval("PROD_Nombre") %> </h5>
                                         <p class="card-text">Precio: $<%# Eval("PROD_Precio") %></p>
-                                        <div>
+                                        <div class="mb-3">
+                                            <label for="cantidadAlimentos" class="form-label">Cantidad:</label>
+                                            <input type="number" id="cantidadAlimentos" name="cantidadAlimentos" class="form-control" min="1" value="1" />
                                             <asp:Label ID="lbldescripcion" runat="server" Visible="false" CssClass="d-inline-block mr-2"></asp:Label>
-                                            <asp:Label ID="lblStockMin" runat="server" Visible="false" CssClass="d-inline-block"></asp:Label>
                                         </div>
-                                        <asp:HyperLink ID="btnComprar" runat="server" NavigateUrl="Carrito_compras.aspx" CssClass="btn btn-primary me-2" Text="Comprar" />
-                                        <asp:HyperLink ID="btnAgregarCarrito" runat="server" NavigateUrl="Carrito_compras.aspx" CssClass="btn btn-outline-primary" Text="Agregar al Carrito" />
+                                        <asp:HyperLink ID="lnkAgregarCarrito" runat="server" NavigateUrl="Carrito_compras.aspx" CssClass="btn btn-outline-primary" Text="Agregar al Carrito" />
                                     </div>
                                 </div>
                             </div>
@@ -32,6 +37,7 @@
                     </div> 
                 </ItemTemplate>
             </asp:Repeater>
+         
         </div>
     </div>
 

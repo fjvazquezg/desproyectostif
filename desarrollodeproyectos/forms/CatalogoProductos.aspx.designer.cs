@@ -105,6 +105,15 @@ namespace desarrollodeproyectos.forms
         protected global::System.Web.UI.WebControls.DropDownList Seleccion;
 
         /// <summary>
+        /// Control EnUsoOno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList EnUsoOno;
+
+        /// <summary>
         /// Control DescripcionProduc.
         /// </summary>
         /// <remarks>
@@ -114,13 +123,13 @@ namespace desarrollodeproyectos.forms
         protected global::System.Web.UI.WebControls.TextBox DescripcionProduc;
 
         /// <summary>
-        /// Control ImgFile.
+        /// Control Logo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload ImgFile;
+        protected global::System.Web.UI.WebControls.FileUpload Logo;
 
         /// <summary>
         /// Control Preview.
@@ -130,6 +139,42 @@ namespace desarrollodeproyectos.forms
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image Preview;
+
+        /// <summary>
+        /// Control ImagenPromo1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload ImagenPromo1;
+
+        /// <summary>
+        /// Control Previewb.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Previewb;
+
+        /// <summary>
+        /// Control ImagenPromo2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload ImagenPromo2;
+
+        /// <summary>
+        /// Control Previewc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Previewc;
 
         /// <summary>
         /// Control BtnRegistrar.

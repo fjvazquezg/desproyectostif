@@ -4,7 +4,7 @@
 
 <html lang="es">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
@@ -19,6 +19,7 @@
     <link href="Scripts/css/bootstrap.min.css" rel="stylesheet" />
     <link href="Scripts/css/bootstrap.rtl.css" rel="stylesheet" />
     <link href="Scripts/css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -42,58 +43,175 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">UADEO</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
-        aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Inicio
+        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">UADEO</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+                    aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Inicio
               <span class="visually-hidden">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Categoria</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Ofertas</a>
-          </li>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Categoria</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Ofertas</a>
+                        </li>
 
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-sm-2" type="Buscar" placeholder="Search">
-          <button class="btn btn-primary" type="submit">Search</button>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-sm-2" type="Buscar" placeholder="Search">
+                        <button class="btn btn-primary" type="submit">Search</button>
 
-       <!-- Botón de filtrar con imagen pequeña -->
-            <asp:LinkButton ID="LinkButton1" CssClass="btn btn-primary" runat="server" Text="Carrito" PostBackUrl="~/forms/Filtro.aspx">
-            <img src="../Img/Iconos/filtrar.png"" style="width: 30px; height: 30px;" />
-          
-            </asp:LinkButton>
-        <!-- Botón del carrito con imagen pequeña -->
-          <%--<button class="btn btn-primary" type="button" onclick="carritoClick()">
+                        <!-- Botón de filtrar con imagen pequeña -->
+                        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnFiltrar">
+                            <img src="../Img/Iconos/filtrar.png" style="width: 30px; height: 30px;">
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content bg-white">
+                                    <!-- Agregué la clase bg-white para establecer el fondo blanco -->
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5">Filtros</h1>
+                                        <div class="margin-right">
+                                            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                    </div>
+                                    <asp:Repeater ID="RepeaterProductos" runat="server">
+                                        <ItemTemplate>
+                                            <div>
+                                                <span><%# Eval("Nombre") %></span>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                    <div class="modal-body">
+                                        <p>
+                                            <!-- Botones de Rango de precio -->
+                                            <h4>Rango de precio</h4>
+
+
+                                            <style>
+                                                /* Estilo para el color del placeholder */
+                                                ::placeholder {
+                                                    color: black !important; /* Cambiar el color del placeholder a negro */
+                                                    opacity: 1 !important; /* Asegurar que el placeholder sea completamente visible */
+                                                }
+                                            </style>
+
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text bg-white text-dark">$</span>
+                                                <input type="number" class="form-control text-dark bg-transparent" id="txtPreMini" placeholder="Precio mínimo" aria-label="<strong style='color: black;'>Precio mínimo</strong>">
+                                                <span class="input-group-text bg-white text-dark">$</span>
+                                                <input type="number" class="form-control text-dark bg-transparent" id="txtPreMax" placeholder="Precio máximo" aria-label="<strong style='color: black;'>Precio máximo</strong>">
+                                            </div>
+
+
+                                            <!-- Botones de Productos -->
+                                            <h4>Categorías</h4>
+                                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                                <input type="checkbox" class="btn-check" id="check1" autocomplete="off">
+                                                <label class="btn btn-outline-primary" for="check1">Categoría</label>
+                                                <input type="checkbox" class="btn-check" id="check2" autocomplete="off">
+                                                <label class="btn btn-outline-primary" for="check2">Categoría</label>
+                                                <input type="checkbox" class="btn-check" id="check3" autocomplete="off">
+                                                <label class="btn btn-outline-primary" for="check3">Categoría</label>
+                                            </div>
+                                            <br>
+                                            <br>
+
+
+                                            <!-- Botón otros -->
+                                            <h4>Otros</h4>
+                                            <div class="btn-container">
+                                                <div class="d-grid gap-2">
+                                                    <button class="btn btn-lg btn btn-outline-danger" id="btnFav" type="button">☆ Favoritos</button>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </p>
+                                    </div>
+                                    <!-- Botones de cerrar y confirmar -->
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" class="btn btn-secondary btn-lg" id="btnRestablecer">Restablecer</button>
+
+                                        <div>
+                                            <button type="button" class="btn btn-danger btn-lg" data-bs-dismiss="modal" id="btnCerrar">Cerrar</button>
+                                            <button type="button" class="btn btn-success btn-lg" id="btnAceptar">Confirmar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botón del carrito con imagen pequeña -->
+                        <%--<button class="btn btn-primary" type="button" onclick="carritoClick()">
             <img src="../Img/Iconos/carrito-de-supermercado.png" style="width: 30px; height: 30px;"> Carrito
               
           </button>--%>
-          <asp:LinkButton ID="lnkCarrito" CssClass="btn btn-primary" runat="server" Text="Carrito" PostBackUrl="~/forms/Carrito_compras.aspx">
+                        <asp:LinkButton ID="lnkCarrito" CssClass="btn btn-primary" runat="server" Text="Carrito" PostBackUrl="~/forms/Carrito_compras.aspx">
             <img src="../Img/Iconos/carrito-de-supermercado.png" style="width: 30px; height: 30px;" />
-        </asp:LinkButton>
+                        </asp:LinkButton>
 
 
-        </form>
-      </div>
-    </div>
-  </nav>
+                    </form>
+                </div>
+            </div>
+        </nav>
 
-  <!-- Agrega el resto de tu contenido aquí -->
+        <!-- Agrega el resto de tu contenido aquí -->
 
-  <!-- Agrega los scripts de Bootstrap si es necesario -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous"></script>
+        <!-- Agrega los scripts de Bootstrap si es necesario -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous"></script>
+
+        <script>
+            const btnRestablecer = document.getElementById('btnRestablecer');
+            const btnCerrar = document.getElementById('btnCerrar');
+            const Check1 = document.getElementById('check1');
+            const Check2 = document.getElementById('check2');
+            const Check3 = document.getElementById('check3');
+            const textBox1 = document.getElementById('txtPreMini');
+            const textBox2 = document.getElementById('txtPreMax');
+            const btnFav = document.getElementById('btnFav');
+            const btnAceptar = document.getElementById('btnAceptar');
+
+            var checked = false;
+            btnRestablecer.addEventListener('click', function () {
+                Check1.checked = false;
+                Check2.checked = false;
+                Check3.checked = false;
+                textBox1.value = null;
+                textBox2.value = "";
+                btnFav.className = "btn btn-lg btn btn-outline-danger";
+            });
+
+            btnFav.addEventListener('click', function () {
+                if (checked) {
+                    btnFav.className = "btn btn-lg btn btn-outline-danger";
+                    checked = false;
+                }
+                else {
+                    btnFav.className = "btn btn-lg btn btn-danger";
+                    checked = true;
+
+                }
+            });
+
+            btnAceptar.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                __doPostBack('btnAceptar', '');
+            });
+</script>
 
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">

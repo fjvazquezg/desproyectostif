@@ -5,6 +5,11 @@
 
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <div class="container mt-4">
+    </head>
+    <body>
+        <p>Si deseas ver las políticas del sitio, haz clic en el siguiente enlace:</p>
+        <a href="PoliticasWebsite.aspx">Ver Políticas del Sitio</a>
+    </body>
         <h1>Bienvenido a Tu Tienda en Línea</h1>
         <div class="row">
             <asp:Repeater ID="rptProductos" runat="server" OnItemDataBound="rptProductos_ItemDataBound">
@@ -13,8 +18,9 @@
                         <div class="card border-primary mb-3">
                             <div class="card-body">
                                 <h5 class="card-title"><%# Eval("PROD_Nombre") %></h5>
-                                <asp:Image ID="imgProducto" runat="server" ImageUrl='<%# Eval("PROD_URLImga") %>' AlternateText="Producto" CssClass="img-fluid" />
-                                <p class="card-text">Precio: $<%# Eval("PROD_Precio") %></p>      
+                               <asp:Image ID="imgProducto" runat="server" ImageUrl='<%# Eval("PROD_URLImga") %>' AlternateText="Producto" CssClass="img-fluid" Width="300px" Height="200px" />
+
+                                <p class="card-text">Precio:  $<%# Eval("PROD_Precio") %></p>      
                                 <asp:HyperLink ID="hlDetalles" runat="server" NavigateUrl='<%# "InfoProducto.aspx?productoId=" + Eval("PROD_Id") %>' Text="Ver Detalles" CssClass="btn btn-outline-primary" />
                                 
                             </div>

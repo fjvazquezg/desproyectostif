@@ -26,8 +26,9 @@ namespace desarrollodeproyectos.forms
             {
                 SqlCommand cmd = new SqlCommand();
                 SqlDataReader dr;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "SELECT ISNULL(MAX(TC_Id),0) + 1 as Consec FROM TIPOCOMIDA";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "SP_TIPOCOMIDA";
+                cmd.Parameters.Add("@OP", SqlDbType.TinyInt).Value = 4;
                 cmd.Connection = conn;
 
                 try
@@ -86,6 +87,7 @@ namespace desarrollodeproyectos.forms
             }
             else
             {
+                lblError.Visible = false;
                 RegistrarTC();
                 ClearTodo();
                 CargarConsecutivo();

@@ -12,7 +12,7 @@
     <title></title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <%--<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
          <div class="d-flex justify-content-between align-items-center">
             
             <a href="#" >
@@ -28,10 +28,10 @@
             <h1 class="navbar-brand">Registro de productos</h1>
              
         </div>
-    </nav>
+    </nav>--%>
     <form id="form1" runat="server">
         <div>
-            <div class="container">
+            <div class="container card shadow" style="padding: 3%; margin-top: 3%;" >
     <div class="row justify-content-center">
       <div class="col-md-40">
             <fieldset>
@@ -39,12 +39,12 @@
                     <div class="row gx-4">
                         <asp:Label ID="lblError" runat="server" Visible="false" Text="" ForeColor="Red"></asp:Label>
                         <div class="col" style="margin-right: 250px;" >
-                        <label for="IdUsua" class="form-label mt-4 col">Id tipo comida</label>
+                        <label for="IdUsua" class="form-label mt-4 col">Id</label>
                         <%--<input type="text" readonly="" class="form-control" style="width: 140px;" id="IdUsua" placeholder="1" />--%>
                         <asp:TextBox ID="IdTipoComida" runat="server" CssClass="form-control" ReadOnly="true" Width="140px"></asp:TextBox>
                         </div>
                         <div class="col" style="margin-left: -88%;" >
-                        <label for="NombreUsua" class="form-label mt-4 col">Nombre del tipo de comida</label>
+                        <label for="NombreUsua" class="form-label mt-4 col">Nombre de un tipo de comida</label>
                         <%--<input type="text" readonly="" class="form-control" id="NombreUsua" placeholder="Juan Lopez Lopez" />--%>
                         <asp:TextBox ID="NombreTipoComida" runat="server" CssClass="form-control" Placeholder="Quesadillas"></asp:TextBox>
                         </div>
@@ -57,6 +57,12 @@
       </div>
     </div>
   </div>
+
+  <footer class="border-top footer text-muted" style="margin: 2%;">
+    <div class="container" style="margin: 1%;">
+        &copy; 2024 - Proyecto de la comida - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+  </footer>
         </div>
     </form>
 </body>
