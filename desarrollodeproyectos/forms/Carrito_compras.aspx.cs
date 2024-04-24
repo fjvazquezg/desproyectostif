@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Collections;
 
 namespace desarrollodeproyectos
 {
@@ -12,6 +13,7 @@ namespace desarrollodeproyectos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 CargarDatosAlDataGridView(1);
@@ -47,31 +49,74 @@ namespace desarrollodeproyectos
 
         public void CrearCarrito(int productoId, int usuarioId, int cantidad)
         {
-            int carritoId = ObtenerDatos(usuarioId, 1);
+            bool carrito = UsuarioTieneCarrito(usuarioId);
 
-            if (carritoId == 0)
+            if (carrito == false)
             {
-                carritoId = ObtenerDatos(usuarioId, 1) + 1;
-
-                CrearNuevoCarrito(usuarioId, carritoId);
+                CrearNuevoCarrito(usuarioId);
             }
-            if (ObtenerDatos(usuarioId, 4) == 0) // TO-DO comprobar bien como sera el caso cuando una trasnaccion termine borrare la tabla detalle y si la dejo como manejare lo demas? 
+
+            if (ObtenerDatos(usuarioId, 4) == 0)
             {
+
+                int carritoId = ObtenerDatos(usuarioId, 1);
+
                 AgregarProductoAlCarritoDetalle(carritoId, productoId, cantidad);
 
                 CargarDatosAlDataGridView(usuarioId);
             }
         }
 
+        protected void btnSeguirComprando_Click(object sender, EventArgs e)
+        {
+           // TO DO que devuelva para la pagina principal
+        }
 
-        private void CrearNuevoCarrito(int usuarioId, int carritoId)
+        private void GUARDAR(int usuarioid)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["connDB"].ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SP_CARRITO", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@OP", 4);
+                cmd.Parameters.AddWithValue("@CAR_UsuarioId", usuarioid);
+                cmd.Parameters.AddWithValue("@CAR_Status", 1);
+
+                connection.Open();
+
+                cmd.ExecuteNonQuery();
+
+                connection.Close();
+            }
+        }
+
+        private bool UsuarioTieneCarrito(int usuarioId)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["connDB"].ConnectionString;
+            string query = "SELECT COUNT(*) FROM CARRITO WHERE CAR_UsuarioId = @usuarioId";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@usuarioId", usuarioId);
+
+                connection.Open();
+
+                int carritoCount = (int)cmd.ExecuteScalar();
+
+                connection.Close();
+
+                return carritoCount > 0;
+            }
+        }
+
+        private void CrearNuevoCarrito(int usuarioId)
         {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["connDB"].ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand("SP_CARRITO", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@OP", 1);
-                cmd.Parameters.AddWithValue("@CAR_ID", carritoId);
                 cmd.Parameters.AddWithValue("@CAR_UsuarioId", usuarioId);
                 cmd.Parameters.AddWithValue("@CAR_Fecha", DateTime.UtcNow);
                 cmd.Parameters.AddWithValue("@CAR_LugarDeEntrega", "");
@@ -116,6 +161,19 @@ namespace desarrollodeproyectos
             List<CarritoDetalle> detallesCarrito = ObtenerDetallesCarritoDesdeBaseDeDatos();
             GridViewCarrito.DataSource = detallesCarrito;
             GridViewCarrito.DataBind();
+
+            if (detallesCarrito.Count == 0)
+            {
+                tituloCarrito.Text = "Carrito de Compras Vacío";
+
+                panelContenido.Visible = false;
+            }
+            else
+            {
+                tituloCarrito.Text = "Carrito de Compras";
+
+                panelContenido.Visible = true;
+            }
         }
 
         private List<CarritoDetalle> ObtenerDetallesCarritoDesdeBaseDeDatos()
