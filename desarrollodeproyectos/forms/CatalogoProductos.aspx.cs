@@ -9,33 +9,44 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Drawing;
 using System.IO;
+using System.Web.UI.HtmlControls;
 
 namespace desarrollodeproyectos.forms
 {
     public partial class CatalogoProductos : System.Web.UI.Page
     {
-        string defaultImageUrl = "../Img/No2.jpg";
+        string defaultImageUrl = "../Img/Iconos/No2.jpg";
+
+        int prodid;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            int idusua = Convert.ToInt32(Session["PROD_IdUsuario"]);
-            string nombreusua = Convert.ToString(Session["PROD_NomUsuario"]);
-            string accion = Convert.ToString(Session["Accion"]);
-
-            int prodid = Convert.ToInt32(Session["PROD_Id"]);
-            string prodnombre = Convert.ToString(Session["PROD_Nombre"]);
-            decimal prodprecio = Convert.ToDecimal(Session["PROD_Precio"]);
-            int prodstockmin = Convert.ToInt32(Session["PROD_StockMin"]);
-            int prodstockmax = Convert.ToInt32(Session["PROD_StockMax"]);
-            int prodtipocomida = Convert.ToInt32(Session["PROD_TipoComida"]);
-            string proddescripcion = Convert.ToString(Session["PROD_Descripcion"]);
-            /*string urlIMGa = Convert.ToString(Session["PROD_URLImga"]);
-            string urlIMGb = Convert.ToString(Session["PROD_URLImgb"]);
-            string urlIMGc = Convert.ToString(Session["PROD_URLImgc"]);*/
+            int idusua = Convert.ToInt32(Request.QueryString["abcd"]);
+            string nombreusua = Convert.ToString(Request.QueryString["def"]);
+            //string accion = Convert.ToString(Session["Accion"]);
+            //int prodid; // Convert.ToInt32(Session["PROD_Id"]);
+            //string prodnombre = Convert.ToString(Session["PROD_Nombre"]);
+            //decimal prodprecio = Convert.ToDecimal(Session["PROD_Precio"]);
+            //int prodstockmin = Convert.ToInt32(Session["PROD_StockMin"]);
+            //int prodstockmax = Convert.ToInt32(Session["PROD_StockMax"]);
+            //int prodtipocomida = Convert.ToInt32(Session["PROD_TipoComida"]);
+            //string proddescripcion = Convert.ToString(Session["PROD_Descripcion"]);
+            //string urlIMGa = Convert.ToString(Session["PROD_URLImga"]);
+            //string urlIMGb = Convert.ToString(Session["PROD_URLImgb"]);
+            //string urlIMGc = Convert.ToString(Session["PROD_URLImgc"]);
+            //bool prodestado = Convert.ToBoolean(Session["PROD_Status"]);
 
             if (!IsPostBack)
             {
-                if (accion == "1")
+                if (Request.QueryString["abc"] != null)
+                {
+                    prodid = Convert.ToInt32(Request.QueryString["abc"]);
+                    CargaTipoComida();
+                    IdUsuar.Text = idusua.ToString();
+                    NombreUsua.Text = nombreusua;
+                    TraerDatosProd();
+                }
+                else
                 {
                     IdUsuar.Text = idusua.ToString();
                     NombreUsua.Text = nombreusua;
@@ -46,22 +57,36 @@ namespace desarrollodeproyectos.forms
                     CargarConsecutivo();
                     CargaTipoComida();
                 }
-                else if (accion == "2")
-                {
-                    IdUsuar.Text = idusua.ToString();
-                    NombreUsua.Text = nombreusua;
-                    IdProduc.Text = prodid.ToString();
-                    NombreProduc.Text = prodnombre;
-                    PrecioProdu.Text = prodprecio.ToString();
-                    StockMin.Text = prodstockmin.ToString();
-                    StockMax.Text = prodstockmax.ToString();
-                    Seleccion.SelectedValue = prodtipocomida.ToString();
-                    DescripcionProduc.Text = proddescripcion;
-                    lblError.Visible = false;
-                    Preview.ImageUrl = defaultImageUrl;
-                    Previewb.ImageUrl = defaultImageUrl;
-                    Previewc.ImageUrl = defaultImageUrl;
-                }
+
+                //if (accion == "1")
+                //{
+                //    IdUsuar.Text = idusua.ToString();
+                //    NombreUsua.Text = nombreusua;
+                //    lblError.Visible = false;
+                //    Preview.ImageUrl = defaultImageUrl;
+                //    Previewb.ImageUrl = defaultImageUrl;
+                //    Previewc.ImageUrl = defaultImageUrl;
+                //    CargarConsecutivo();
+                //    CargaTipoComida();
+                //}
+                //else if (accion == "2")
+                //{
+                //    CargaTipoComida();
+                //    IdUsuar.Text = idusua.ToString();
+                //    NombreUsua.Text = nombreusua;
+                //    IdProduc.Text = prodid.ToString();
+                //    NombreProduc.Text = prodnombre;
+                //    PrecioProdu.Text = prodprecio.ToString();
+                //    StockMin.Text = prodstockmin.ToString();
+                //    StockMax.Text = prodstockmax.ToString();
+                //    Seleccion.SelectedValue = prodtipocomida.ToString();
+                //    DescripcionProduc.Text = proddescripcion;
+                //    lblError.Visible = false;
+                //    Preview.ImageUrl = urlIMGa;
+                //    Previewb.ImageUrl = urlIMGb;
+                //    Previewc.ImageUrl = urlIMGc;
+                //    CheckEstado.Checked = prodestado;
+                //}
 
                 /*IdUsuar.Text = idusua.ToString();
                 NombreUsua.Text = nombreusua;
@@ -71,6 +96,57 @@ namespace desarrollodeproyectos.forms
                 Previewc.ImageUrl = defaultImageUrl;
                 CargarConsecutivo();
                 CargaTipoComida();*/
+            }
+            else
+            {
+                if (Request.QueryString["abc"] != null)
+                {
+                    prodid = Convert.ToInt32(Request.QueryString["abc"]);
+                    CargaTipoComida();
+                    IdUsuar.Text = idusua.ToString();
+                    NombreUsua.Text = nombreusua;
+                    TraerDatosProd();
+                }
+            }
+        }
+
+        public void TraerDatosProd()
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connDB"].ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand();
+                SqlDataReader dr;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "SP_PRODUCTO";
+                cmd.Parameters.Add("@OP", SqlDbType.TinyInt).Value = 5;
+                cmd.Parameters.Add("@PROD_Id", SqlDbType.Int).Value = prodid;
+                cmd.Connection = conn;
+
+                try
+                {
+                    conn.Open();
+                    dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        IdProduc.Text = dr.GetInt32(0).ToString();
+                        NombreProduc.Text = dr.GetString(1);
+                        PrecioProdu.Text = dr.GetDecimal(2).ToString();
+                        StockMin.Text = dr.GetInt32(3).ToString();
+                        StockMax.Text = dr.GetInt32(4).ToString();
+                        Seleccion.SelectedValue = dr.GetInt32(5).ToString();
+                        DescripcionProduc.Text = dr.GetString(6);
+                        //Preview.ImageUrl = dr.GetString(7);
+                        //Previewb.ImageUrl = dr.GetString(8);
+                        //Previewc.ImageUrl = dr.GetString(9);
+                        //Logo.PostedFile = dr.GetString(7).ToString();
+                        CheckEstado.Checked = dr.GetBoolean(10);
+                    }
+                }
+                finally
+                {
+
+                }
             }
         }
 
@@ -150,6 +226,8 @@ namespace desarrollodeproyectos.forms
                 string rutaImgb = "";
                 string rutaImgc = "";
 
+                bool Estado = CheckEstado.Checked;
+
                 if (Logo != null || ImagenPromo1 != null || ImagenPromo2 != null)
                 {
                     fileNamea = Path.GetFileName(Logo.FileName);
@@ -182,6 +260,7 @@ namespace desarrollodeproyectos.forms
                 cmd.Parameters.Add("@PROD_URLImga", SqlDbType.VarChar).Value = rutaImga;
                 cmd.Parameters.Add("@PROD_URLImgb", SqlDbType.VarChar).Value = rutaImgb;
                 cmd.Parameters.Add("@PROD_URLImgc", SqlDbType.VarChar).Value = rutaImgc;
+                cmd.Parameters.Add("@PROD_Status", SqlDbType.Bit).Value = Estado;
                 cmd.Parameters.Add("@PROD_IdUsuario", SqlDbType.Int).Value = IdUsuar.Text.Trim();
                 cmd.Connection = conn;
 
@@ -205,6 +284,9 @@ namespace desarrollodeproyectos.forms
             StockMin.Text = "";
             StockMax.Text = "";
             DescripcionProduc.Text = "";
+            Preview.ImageUrl = defaultImageUrl;
+            Previewb.ImageUrl = defaultImageUrl;
+            Previewc.ImageUrl = defaultImageUrl;
             lblError.Visible = false;
         }
 
@@ -264,6 +346,7 @@ namespace desarrollodeproyectos.forms
                     RegistrarProducto();
                     ClearTodo();
                     CargarConsecutivo();
+                    CargaTipoComida();
                 }
             }
         }

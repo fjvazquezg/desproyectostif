@@ -107,13 +107,16 @@
                     <asp:DropDownList ID="Seleccion" runat="server" CssClass="form-select"></asp:DropDownList>
                 </div>
                 <div class="form-group">
-                    <label for="EnUsoOno" class="form-label mt-4">Estado en el que se encuentra la producción del producto</label>
-                  <%--<label for="SeleccionProduc" class="form-label mt-4">Tipo de comida</label>
+                    <label for="CheckEstado" class="form-label mt-4">Estado en el que se encuentra la producción del producto</label>
+                    <div class="form-group">
+                        <asp:CheckBox ID="CheckEstado" runat="server" CssClass="form-check-input" Text="Activo" />
+                    </div>
+                  <%--<%--<label for="SeleccionProduc" class="form-label mt-4">Tipo de comida</label>
                     <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-select"></asp:DropDownList>--%>
-                    <asp:DropDownList ID="EnUsoOno" runat="server" CssClass="form-select">
-                        <asp:ListItem Text="Activo" Value="1"></asp:ListItem>
-                        <asp:ListItem Text="Desactivado" Value="0"></asp:ListItem>
-                    </asp:DropDownList>
+                    <%--<asp:DropDownList ID="EnUsoOno" runat="server" CssClass="form-select">
+                        <asp:ListItem Text="Activo" Value= "1"></asp:ListItem>
+                        <asp:ListItem Text="Desactivado" Value="0"></asp:ListItem>--%>
+                    <%--</asp:DropDownList>--%>
                 </div>
                 <div class="form-group">
                   <label for="DescripcionProduc" class="form-label mt-4">Descripción</label>
@@ -124,6 +127,8 @@
                   <label for="Logo" class="form-label mt-4">Logo del producto</label>
                   <%--<input class="form-control" style="margin-bottom: 20px;" type="file" id="ImgFile" />--%>
                   <asp:FileUpload ID="Logo" runat="server" CssClass="form-control" Style="margin-bottom: 20px" accept="image/png,image/jpeg"/>
+                    <asp:Literal ID="Literal1" runat="server" Text="Ingresar imagenes que tengan las medidas de pixeles de 500x500"></asp:Literal>
+                    <br />
                     <asp:Image  ID="Preview" ImageUrl="imageurl" runat="server" Width="400px" Height="400px"/>
                   <%--<div id="preview" class="styleImage" ></div>--%>
                 </div>
@@ -131,6 +136,8 @@
                   <label for="ImagenPromo1" class="form-label mt-4">Imagen promocional 1 del producto</label>
                   <%--<input class="form-control" style="margin-bottom: 20px;" type="file" id="ImgFile" />--%>
                   <asp:FileUpload ID="ImagenPromo1" runat="server" CssClass="form-control" Style="margin-bottom: 20px" accept="image/png,image/jpeg"/>
+                    <asp:Literal ID="Literal2" runat="server" Text="Ingresar imagenes que tengan las medidas de pixeles de 500x500"></asp:Literal>
+                    <br />
                     <asp:Image  ID="Previewb" ImageUrl="imageurl" runat="server" Width="400px" Height="400px"/>
                   <%--<div id="preview" class="styleImage" ></div>--%>
                 </div>
@@ -138,6 +145,8 @@
                   <label for="ImagenPromo2" class="form-label mt-4">Imagen promocional 2 del producto</label>
                   <%--<input class="form-control" style="margin-bottom: 20px;" type="file" id="ImgFile" />--%>
                   <asp:FileUpload ID="ImagenPromo2" runat="server" CssClass="form-control" Style="margin-bottom: 20px" accept="image/png,image/jpeg"/>
+                    <asp:Literal ID="Literal3" runat="server" Text="Ingresar imagenes que tengan las medidas de pixeles de 500x500"></asp:Literal>
+                    <br />
                     <asp:Image  ID="Previewc" ImageUrl="imageurl" runat="server" Width="400px" Height="400px"/>
                   <%--<div id="preview" class="styleImage" ></div>--%>
                 </div>
