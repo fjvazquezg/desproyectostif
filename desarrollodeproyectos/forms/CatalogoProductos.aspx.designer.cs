@@ -105,13 +105,13 @@ namespace desarrollodeproyectos.forms
         protected global::System.Web.UI.WebControls.DropDownList Seleccion;
 
         /// <summary>
-        /// Control EnUsoOno.
+        /// Control CheckEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList EnUsoOno;
+        protected global::System.Web.UI.WebControls.CheckBox CheckEstado;
 
         /// <summary>
         /// Control DescripcionProduc.
@@ -132,6 +132,15 @@ namespace desarrollodeproyectos.forms
         protected global::System.Web.UI.WebControls.FileUpload Logo;
 
         /// <summary>
+        /// Control Literal1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal1;
+
+        /// <summary>
         /// Control Preview.
         /// </summary>
         /// <remarks>
@@ -150,6 +159,15 @@ namespace desarrollodeproyectos.forms
         protected global::System.Web.UI.WebControls.FileUpload ImagenPromo1;
 
         /// <summary>
+        /// Control Literal2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal2;
+
+        /// <summary>
         /// Control Previewb.
         /// </summary>
         /// <remarks>
@@ -166,6 +184,15 @@ namespace desarrollodeproyectos.forms
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload ImagenPromo2;
+
+        /// <summary>
+        /// Control Literal3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal3;
 
         /// <summary>
         /// Control Previewc.

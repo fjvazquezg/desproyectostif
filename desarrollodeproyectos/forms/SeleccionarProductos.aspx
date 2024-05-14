@@ -30,6 +30,7 @@
                             <asp:BoundField DataField="PROD_URLImga" HeaderText="URL Logo" Visible="false" />
                             <asp:BoundField DataField="PROD_URLImgb" HeaderText="URL Promoción 1" Visible ="false" />
                             <asp:BoundField DataField="PROD_URLImgc" HeaderText="URL Promoción 2" Visible="false" />
+                            <asp:BoundField DataField="PROD_Status" HeaderText="Estado del producto" />
                             <asp:BoundField DataField="PROD_IdUsuario" HeaderText="ID Usuario" />
                         </Columns>
                     </asp:GridView>

@@ -19,25 +19,17 @@ namespace desarrollodeproyectos.forms
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Session["Accion"] = "1";
-            Session["PROD_IdUsuario"] = IdUsua;
-            Session["PROD_NomUsuario"] = NombreUsua;
-            Response.Redirect("CatalogoProductos.aspx");
+            Response.Redirect("CatalogoProductos.aspx?abcd=" + IdUsua + "&def=" + NombreUsua);
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Session["Accion"] = "2";
-            Session["PROD_IdUsuario"] = IdUsua;
-            Session["PROD_NomUsuario"] = NombreUsua;
-            Response.Redirect("SeleccionarProductos.aspx");
+            Response.Redirect("SeleccionarProductos.aspx?abcd=" + IdUsua + "&def=" + NombreUsua);
         }
 
         protected void Button4_Click(object sender, EventArgs e)
         {
-            Session["PROD_IdUsuario"] = IdUsua;
-            Session["PROD_NomUsuario"] = NombreUsua;
-            Response.Redirect("CatalagoTipoComida.aspx");
+            Response.Redirect("CatalagoTipoComida.aspx?abcd=" + IdUsua + "&def=" + NombreUsua);
         }
     }
 }

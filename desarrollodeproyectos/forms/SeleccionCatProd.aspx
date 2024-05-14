@@ -19,7 +19,7 @@
                 <div class="container" style="margin-bottom: 20px;">
                     <div class="row justify-content-center"> <!-- Columna para el logo, alineado a la izquierda -->
                         <h3 style="text-align: center; margin-bottom: 1%;">Panel de administración de productos</h3>
-                        <img src="../Img/LogoTienda.png" alt="Logo" class="img-fluid" style="max-width: 100%; width: 170px; height: 170px;" /> <!-- Ajusta la ruta del logo y el tamaño según lo necesites -->
+                        <img src="../Img/Iconos/LogoTienda.png" alt="Logo" class="img-fluid" style="max-width: 100%; width: 170px; height: 170px;" /> <!-- Ajusta la ruta del logo y el tamaño según lo necesites -->
                     </div>
                 </div>
                 <div class="container">
