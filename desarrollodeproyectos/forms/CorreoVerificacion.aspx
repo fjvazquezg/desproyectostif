@@ -13,6 +13,7 @@
     <link href="../Scripts/css/bootstrap.rtl.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../forms/CorreoVerificacion.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <title></title>
 </head>
 
@@ -56,6 +57,16 @@
         </div>
     </form>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function showModal(success, message) {
+            var modalTitle = success ? "¡Éxito!" : "Error";
+            var modalBody = success ? message : "Hubo un error.";
+            $('#successModal').modal('show');
+        } 
+    </script>
+
     <!-- Modal -->
     <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
      <div class="modal-dialog">
@@ -73,20 +84,6 @@
         </div>
      </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script>
-        function showModal(success) {
-            var modalTitle = success ? "¡Éxito!" : "Error";
-            var modalBody = success ? "Se ha enviado las claves al usuario." : "Hubo un error al enviar el correo.";
-            var modal = new bootstrap.Modal(document.getElementById('successModal'), {});
-            document.getElementById('successModalLabel').innerText = modalTitle;
-      
-            document.querySelector('#successModal .modal-body').innerText = modalBody;
-            modal.show();
-        }
-    </script>
 
 </body>
 

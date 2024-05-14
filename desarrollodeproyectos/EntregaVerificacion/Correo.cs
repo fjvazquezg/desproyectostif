@@ -16,7 +16,7 @@ namespace desarrollodeproyectos.EntregasVerificacion
                 Host = "smtp.gmail.com",
                 Port = 587,
                 EnableSsl = true,
-                Credentials = new NetworkCredential("uadeoisoft@gmail.com", "ixav znpf qvou eywm")
+                Credentials = new NetworkCredential("isof.uadeo@gmail.com", "qjzf gawh dlta zdyl")
             };
         }
 
