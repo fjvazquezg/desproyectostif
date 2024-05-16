@@ -13,60 +13,87 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        
+
         <div>
             <div class="container-lg">
       <h3 class="text-center">REGISTRO DE USUARIOS</h3>
       <div class="form-group">
         <label for="exampleInputEmail1" class="form-label mt-4">Nombre</label>
-        <input
-          type="Nombre"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          placeholder="Nombre completo"
-        />
+         <asp:TextBox 
+             ID="txtNombre"
+             name="txtNombre"
+             class="form-control" 
+             runat="server" 
+             aria-describedby="emailHelp" 
+             placeholder="Nombre completo">
+         </asp:TextBox>
+ 
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="form-label mt-4">Apellido</label>
+         <asp:TextBox 
+             ID="txtApellido"
+             name="txtApellido"
+             class="form-control" 
+             runat="server" 
+             aria-describedby="emailHelp" 
+             placeholder="Nombre completo">
+         </asp:TextBox>  
+          
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1" class="form-label mt-4">Correo</label>
-        <input
-          type="Correo"
-          class="form-control"
-          id="exampleInputPassword1"
-          placeholder="Correo"
-          autocomplete="off"
-        />
+          <asp:TextBox 
+              ID="txtCorreo" 
+              name="txtCorreo" 
+              class="form-control" 
+              runat="server" 
+              placeholder="Correo"
+              autocomplete="off">
+          </asp:TextBox>
+        
+          
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1" class="form-label mt-4">Numero de telefono</label>
-        <input
-          type="Telefono"
-          class="form-control"
-          id="exampleInputPassword1"
-          placeholder="Numero de telefono"
-          autocomplete="off"
-          inputmode="numeric"
-        />
-      </div>
+          <asp:TextBox 
+              ID="txtTelefono" 
+              name="txtTelefono" 
+              class="form-control" 
+              runat="server" 
+              placeholder="Numero de telefono"
+              autocomplete="off"
+              inputmode="numeric">
+          </asp:TextBox>
+
       <div class="form-group">
         <label for="exampleInputPassword1" class="form-label mt-4">Contraseña</label>
-        <input
-          type="password"
-          class="form-control"
-          id="exampleInputPassword1"
-          placeholder="contraseña"
-          autocomplete="off"
-        />
+          <asp:TextBox 
+              ID="txtContrasena" 
+              name="txtContrasena" 
+              class="form-control" 
+              runat="server" 
+              placeholder="contraseña"
+              autocomplete="off">
+          </asp:TextBox>
+
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1" class="form-label mt-4">Confirma contraseña</label>
-        <input
-          type="password"
-          class="form-control"
-          id="exampleInputPassword1"
-          placeholder="Confirma contraseña "
-          autocomplete="off"
-        />
+          <asp:TextBox 
+              ID="txtContrasena2" 
+              name="txtContrasena2" 
+              class="form-control" 
+              runat="server" 
+              placeholder="contraseña"
+              autocomplete="off">
+          </asp:TextBox>
+        
       </div>
+
+
+
       <!-- Button trigger modal -->
 <br>
 <input disabled type="checkbox" class="btn-check " id="btncheck1"  autocomplete="off" >
@@ -153,8 +180,9 @@ btnCancelar.addEventListener('click', function() {
 
 </script>
       <br>
-      <button type="button" class="btn btn-primary">Registrar Vendedor</button>
-      <button type="button" class="btn btn-success">Registrar Comprador</button>
+            <asp:Button ID="Button1" class="btn btn-primary" runat="server" Text="Registrar" OnClick="Button1_Click" />
+    <!--  <button type="button" class="btn btn-primary">Registrar Vendedor</button>
+      <button type="button" class="btn btn-success">Registrar Comprador</button>-->
     </div>
         </div>
     </form>
