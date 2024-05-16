@@ -14,10 +14,18 @@ namespace desarrollodeproyectos.forms
     {
 
         private string LugarEntrega;
+        private int carId;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Request.QueryString["car_id"] != null)
+                {
+                    carId = Convert.ToInt32(Request.QueryString["car_id"]);
+                    // Utiliza el carId como necesites
+                }
+            }
         }
 
         protected void Unnamed1_Click(object sender, EventArgs e)
@@ -59,7 +67,7 @@ namespace desarrollodeproyectos.forms
         private void InsertarDatos(string MetoEntrega)
         {
             // en el codigo del erik poner  Almacena el CAR_ID en la sesión "Session["CAR_ID"] = carritoId;"
-            int car_id = Convert.ToInt32(Session["CAR_ID"]);
+            // int car_id = Convert.ToInt32(Session["CAR_ID"]);
 
             // Obtiene la cadena de conexión llamada "SA" del archivo de configuración (Web.config)
             string connectionString = ConfigurationManager.ConnectionStrings["connDB"].ConnectionString;
@@ -71,7 +79,7 @@ namespace desarrollodeproyectos.forms
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@OP", 3);
-                command.Parameters.AddWithValue("@CAR_ID", car_id);
+                command.Parameters.AddWithValue("@CAR_ID", carId);
                 command.Parameters.AddWithValue("@CAR_TipoDeEntrega", MetoEntrega);
                 command.Parameters.AddWithValue("@CAR_LugarDeEntrega", LugarEntrega);
 
