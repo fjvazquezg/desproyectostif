@@ -31,5 +31,10 @@ namespace desarrollodeproyectos.forms
         {
             Response.Redirect("CatalagoTipoComida.aspx?abcd=" + IdUsua + "&def=" + NombreUsua);
         }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Control_Inventario/Control.Inventario.html?abcd=" + IdUsua + "&def=" + NombreUsua);
+        }
     }
 }

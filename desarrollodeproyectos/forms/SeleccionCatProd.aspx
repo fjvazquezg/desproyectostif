@@ -38,6 +38,11 @@
                             <asp:Button ID="Button2" runat="server" Text="Modificar Productos" CssClass="btn btn-danger btn-custom" OnClick="Button2_Click"/>
                         </div>
                     </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-5 text-right"> <!-- Alinea los botones a la derecha -->
+                            <asp:Button ID="Button3" runat="server" Text="Control de invetario" CssClass="btn btn-primary btn-custom" OnClick="Button3_Click" />
+                        </div>
+                    </div>
                 </div>
              </div>
         </div>
