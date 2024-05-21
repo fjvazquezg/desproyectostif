@@ -1,27 +1,29 @@
 ﻿using System;
-using System.Data;
-using System.Data.SqlClient;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Collections.Generic; // Para List<>
-
-
 
 namespace desarrollodeproyectos.forms
 {
-
     public partial class InfoProducto : System.Web.UI.Page
     {
+        Carrito Carrito = new Carrito();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 if (Request.QueryString["productoId"] != null)
                 {
-                    int productId;
-                    if (int.TryParse(Request.QueryString["productoId"], out productId))
+                    int productoId;
+                    if (int.TryParse(Request.QueryString["productoId"], out productoId))
                     {
-                        CargarProducto(productId);
+                        CargarProducto(productoId);
+                        ViewState["productoId"] = productoId; // Guarda el productoId en el ViewState
                     }
                     else
                     {
@@ -37,7 +39,7 @@ namespace desarrollodeproyectos.forms
             }
         }
 
-        private void CargarProducto(int productId)
+        private void CargarProducto(int productoId)
         {
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connDB"].ConnectionString))
             {
@@ -52,9 +54,9 @@ namespace desarrollodeproyectos.forms
                         paramOP.Value = 6; // Consultar solo un producto por ID
                         cmd.Parameters.Add(paramOP);
 
-                        SqlParameter paramProductId = new SqlParameter("@PROD_Id", SqlDbType.Int);
-                        paramProductId.Value = productId;
-                        cmd.Parameters.Add(paramProductId);
+                        SqlParameter ProductoId = new SqlParameter("@PROD_Id", SqlDbType.Int);
+                        ProductoId.Value = productoId;
+                        cmd.Parameters.Add(ProductoId);
 
                         conn.Open();
 
@@ -62,24 +64,23 @@ namespace desarrollodeproyectos.forms
                         {
                             if (reader.HasRows)
                             {
-                                DataTable dt = new DataTable();
-                                dt.Load(reader);
-
-                                InfoProducto1.DataSource = dt;
-                                InfoProducto1.DataBind();
-
-                                // Mostrar el stock mínimo si está disponible
-                                if (dt.Rows.Count > 0)
+                                while (reader.Read())
                                 {
-                                    DataRow row = dt.Rows[0];
-                                     //Label lblStockMin = (Label)InfoProducto1.Items[0].FindControl("lblStockMin");
-                                    //lblStockMin.Text = "Stock Mínimo: " + row["PROD_StockMin"].ToString();
-                                    //lblStockMin.Visible = true;
+                                    string nombreProducto = reader["PROD_Nombre"].ToString();
+                                    decimal precio = Convert.ToDecimal(reader["PROD_Precio"]);
+                                    string descripcion = reader["PROD_Descripcion"].ToString();
+                                    string imagenUrl = reader["PROD_URLImga"].ToString();
 
-                                    Label lbldescripcion = (Label)InfoProducto1.Items[0].FindControl("lbldescripcion");
-                                    lbldescripcion.Text = "Descripcion: " + row["PROD_Descripcion"].ToString();
-                                    lbldescripcion.Visible = true;
+                                    lblNombreProducto.Text = nombreProducto;
+                                    lblPrecio.Text = precio.ToString("C");
+                                    lblDescripcion.Text = descripcion;
+                                    imgProducto.ImageUrl = imagenUrl;
                                 }
+
+                                lblNombreProducto.Visible = true;
+                                lblPrecio.Visible = true;
+                                lblDescripcion.Visible = true;
+                                imgProducto.Visible = true;
                             }
                             else
                             {
@@ -96,8 +97,17 @@ namespace desarrollodeproyectos.forms
                     lblMensaje.Visible = true;
                 }
             }
-
         }
-    }
 
+        protected void add_Click(object sender, EventArgs e)
+        {
+            int productoId = (int)ViewState["productoId"];
+            int cantidad = int.Parse(txtCantidad.Text);
+            int usuario = 1; //Colocar la variable global del usuario
+
+
+            Carrito.CrearCarrito(productoId, usuario, cantidad);
+        }
+
+    }
 }
