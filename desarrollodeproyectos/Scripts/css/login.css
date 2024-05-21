@@ -1,0 +1,392 @@
+@import url(\desarrollodeproyectos\Scripts\reset.css);
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;800;900&display=swap');
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2vh;
+  min-height: 75vh;
+  background-color: #edeab0;
+  opacity: 0.8;
+  background: radial-gradient(circle, transparent 20%, #e5e5f7 20%, #e5e5f7 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #e5e5f7 20%, #e5e5f7 80%, transparent 80%, transparent) 25px 25px, linear-gradient(#444cf7 2px, transparent 2px) 0 -1px, linear-gradient(90deg, #444cf7 2px, #e5e5f7 2px) -1px 0;
+  background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: 400% 400%;
+  position: relative;
+  animation: cambiar 1.9s ease-in-out infinite;
+
+
+}
+
+.login-card {
+  width: 430px;
+  height: 34rem;
+  background: rgba(255, 255, 255, .3);
+  padding: 4rem;
+  border-radius: 20px;
+  position: relative;
+  margin-bottom: 120px;
+  box-shadow: 5px -5px 500px #e0bf1a;
+
+
+}
+
+.login-card-container {
+  position: relative;
+  top: 1rem;
+  margin-top: 10px;
+
+}
+
+.login-card img {
+  width: 235px;
+  padding-left: 110px;
+  padding-bottom: 20px;
+
+}
+
+.login-card-logo .login-card-header .login-card-footer {
+  text-align: flex;
+
+}
+
+.login-card a:hover {
+  text-decoration: underline;
+  color: rgb(177, 25, 83);
+}
+
+.login-card-header {
+  margin-bottom: 2rem;
+}
+
+.login-card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 1px;
+
+}
+
+.login-card-form .form-item {
+  position: relative;
+}
+
+.login-card-form .form-item .form-item-icon {
+  position: absolute;
+  top: .82rem;
+  left: 1.4rem;
+  font-size: 23px;
+  color: #747a81;
+}
+
+.login-card-form .form-item .label {
+  position: absolute;
+  left: 50px;
+  top: 14px;
+  pointer-events: none;
+  font-size: 14px;
+  color: #4f4f50;
+  transition: .5s;
+}
+
+.login-card-form .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+}
+
+.login-card-form .form-item-other {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(1rem*.8);
+  width: 100%;
+  padding: -40px
+}
+
+.login-card-footer {
+  margin-top: -10px;
+  font-size: calc(1rem*.8);
+}
+
+.login-card input[type="text"],
+.login-card input[type="password"] {
+  border: none;
+  outline: none;
+  background: rgb(255, 255, 255, .3);
+  padding: 1rem 1.5rem;
+  padding-left: calc(1rem*3.5);
+  border-radius: 100px;
+  width: 100%;
+
+}
+
+.login-card input[type="text"]:valid,
+.login-card input[type="password"]:valid,
+.login-card input[type="text"]:focus,
+.login-card input[type="password"]:focus {
+  background: rgb(255, 255, 255, .7);
+
+}
+
+.login-card input[type="text"]:valid~.label,
+.login-card input[type="password"]:valid~.label,
+.login-card input[type="text"]:focus~.label,
+.login-card input[type="password"]:focus~.label {
+  color: #000000;
+  transform: translate(12px, -12px);
+  font-size: 0.8em;
+  margin-left: -2rem;
+  top: -6px;
+}
+
+.wrapper {
+  bottom: 25px;
+  position: relative;
+}
+
+.login-card-form button {
+  font-family: sans-serif;
+  position: relative;
+  margin-bottom: 50px;
+  width: 100%;
+  background-color: #f0ad4e;
+  color: #ffffff !important;
+  padding: 14px 0;
+  font-size: 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 750;
+  bottom: -10px;
+  
+
+}
+
+.login-card-social {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  position: relative;
+  left: -10%;
+}
+
+
+.login-card-social>div {
+  opacity: .8;
+  letter-spacing: 1px;
+  font-size: 18px;
+  position: relative;
+  left: 25px;
+}
+
+.login-card-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.login-card-social-btn a {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.997);
+  width: 55px;
+  height: 55px;
+  border-radius: 300px;
+  transition: all .5s;
+
+}
+
+.instagram-logo {
+  background: linear-gradient(to right, #833ab4, #fd1d1d9e, #fcb045);
+}
+
+.twitter-logo {
+  background: rgba(24, 115, 235)
+}
+
+.login-card-social-btn a:hover {
+  transform: scale(1.1);
+  opacity: .8;
+}
+
+
+h2 {
+  margin-top: 20px;
+  margin-left: 50px;
+
+
+}
+
+input[type=checkbox] {
+  width: 16px;
+  height: 16px;
+}
+
+
+
+.checkbox-wrapper-2 .ikxBAC {
+  appearance: none;
+  background-color: #dfe1e4;
+  border-radius: 72px;
+  border-style: none;
+  flex-shrink: 0;
+  height: 20px;
+  margin: 0;
+  position: relative;
+  width: 30px;
+}
+
+.checkbox-wrapper-2 .ikxBAC::before {
+  bottom: -6px;
+  content: "";
+  left: -6px;
+  position: absolute;
+  right: -6px;
+  top: -6px;
+}
+
+.checkbox-wrapper-2 .ikxBAC,
+.checkbox-wrapper-2 .ikxBAC::after {
+  transition: all 100ms ease-out;
+}
+
+.checkbox-wrapper-2 .ikxBAC::after {
+  background-color: #fff;
+  border-radius: 50%;
+  content: "";
+  height: 14px;
+  left: 3px;
+  position: absolute;
+  top: 3px;
+  width: 14px;
+}
+
+.checkbox-wrapper-2 input[type=checkbox] {
+  cursor: default;
+}
+
+.checkbox-wrapper-2 .ikxBAC:hover {
+  background-color: #c9cbcd;
+  transition-duration: 0s;
+}
+
+.checkbox-wrapper-2 .ikxBAC:checked {
+  background-color: #6e79d6;
+}
+
+.checkbox-wrapper-2 .ikxBAC:checked::after {
+  background-color: #fff;
+  left: 13px;
+}
+
+.checkbox-wrapper-2 :focus:not(.focus-visible) {
+  outline: 0;
+}
+
+.checkbox-wrapper-2 .ikxBAC:checked:hover {
+  background-color: #535db3;
+}
+
+.checkbox h1 {
+  position: relative;
+  font-weight: normal;
+  font-family: sans-serif;
+  right: 50px;
+  left: 80px;
+  bottom: 7px;
+  font-size: 15px;
+}
+
+.login-card-logo img {
+  position: relative;
+  right: 20px;
+
+}
+
+
+ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: -100%;
+  transform: translate(-50%, -50%);
+
+}
+
+ul li {
+  list-style: none;
+  margin: 0 15px;
+}
+
+ul li a {
+  position: relative;
+  display: block;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 63px;
+  background: #333;
+  border-radius: 50%;
+  font-size: 30px;
+  color: #666;
+  transition: .5s;
+}
+
+
+ul li a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #ff1010;
+  transition: .5s;
+  transform: scale(.9);
+  z-index: -1;
+}
+
+ul li a:hover::before {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #ffee10;
+}
+
+ul li a:hover {
+  color: #ffee10;
+  box-shadow: 0 0 5px #ffee10;
+  text-shadow: 0 0 5px #ffee10;
+}
+
+ul li {
+  position: relative;
+  left: -50px;
+  bottom: 650px;
+
+}
+
+.fa-edge {
+  box-shadow: #000000;
+}
+
+.checkbox-wrapper-2 {
+  position: relative;
+  bottom: 50px;
+}
+
+.checkbox-wrapper-6 {
+  position: relative;
+  bottom: 15px;
+  left: 15px;
+
+}
