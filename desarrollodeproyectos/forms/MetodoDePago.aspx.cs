@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -17,125 +14,68 @@ namespace desarrollodeproyectos.forms
             if (!IsPostBack)
             {
                 CargarTiposTarjeta();
+                CargarTarjetasGuardadas();
+                CargarTotalEfectivo();
             }
         }
 
         protected void guardarTarjetaButton_Click(object sender, EventArgs e)
         {
-            // Obtener el ID del usuario
-            int userId = ObtenerIdUsuario(); // Esto debería obtener el ID del usuario actualmente autenticado o establecerlo según tu lógica de negocio
-
-            // Obtener los valores de los controles
-            string cardType = ddlTipoTarjeta.SelectedValue;
-            string cardNumber = numeroTarjetaDialog.Text;
-            string cardName = nombreTarjetaDialog.Text;
-            string expirationDate = fechaExpiracionDialog.Text;
-            string securityCode = codigoSeguridad1.Text + codigoSeguridad2.Text;
-
             try
             {
-                // Procesar los datos y guardar la tarjeta en la base de datos
+                int userId = ObtenerIdUsuario();
+
+                string cardType = ddlTipoTarjeta.SelectedValue;
+                string cardNumber = numeroTarjetaDialog.Text;
+                string cardName = nombreTarjetaDialog.Text;
+                string expirationDate = fechaExpiracionDialog.Text;
+                string securityCode = codigoSeguridad1.Text;
+
                 int metId = SaveCard(userId, cardType, cardNumber, cardName, expirationDate, securityCode);
 
-                // Mostrar un mensaje de éxito
-                string mensajeExito = $"Tarjeta guardada correctamente. ID: {metId}";
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('{mensajeExito}');", true);
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Tarjeta guardada correctamente. ID: {metId}');", true);
 
-                // Limpiar los campos de entrada
-                ddlTipoTarjeta.ClearSelection(); // Limpiar la selección del DropDownList
-                numeroTarjetaDialog.Text = "";
-                nombreTarjetaDialog.Text = "";
-                fechaExpiracionDialog.Text = "";
-                codigoSeguridad1.Text = "";
-                codigoSeguridad2.Text = "";
-
-                // Redireccionar a otra página (opcional)
-                // Response.Redirect("OtraPagina.aspx");
+                LimpiarCampos();
+                CargarTarjetasGuardadas();
             }
             catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Ocurrió un error al guardar la tarjeta. Por favor, inténtalo de nuevo más tarde.');", true);
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Ocurrió un error al guardar la tarjeta: {ex.Message}');", true);
             }
-        }
-
-        protected void efectivo_CheckedChanged(object sender, EventArgs e)
-        {
-            // Manejar el evento efectivo_CheckedChanged aquí
         }
 
 
         private int ObtenerIdUsuario()
         {
-            // Define una variable para almacenar el ID del usuario
-            int userId = 0;
-
-            // Conecta con la base de datos y consulta el ID del usuario
-            string connectionString = ConfigurationManager.ConnectionStrings["connDB"].ConnectionString;
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                // Define la consulta SQL para obtener el ID del usuario
-                string query = "SELECT TOP 1 USU_ID FROM USUARIO";
-
-                // Crea el comando SQL
-                SqlCommand command = new SqlCommand(query, connection);
-
-                try
-                {
-                    // Abre la conexión con la base de datos
-                    connection.Open();
-
-                    // Ejecuta la consulta y obtiene el resultado
-                    userId = (int)command.ExecuteScalar();
-                }
-                catch (Exception ex)
-                {
-                    // Maneja la excepción (por ejemplo, registra un mensaje de error)
-                    Console.WriteLine("Error al obtener el ID del usuario: " + ex.Message);
-                    // En una aplicación web, podrías mostrar un mensaje de error al usuario
-                }
-            }
-
-            // Devuelve el ID del usuario
-            return userId;
+            return 5; 
         }
 
         private void CargarTiposTarjeta()
         {
             try
             {
-                // Obtener la cadena de conexión desde Web.config
                 string connectionString = ConfigurationManager.ConnectionStrings["connDB"].ConnectionString;
+                string query = "SELECT DISTINCT CARD_TYPE FROM USUCARD";
 
-                // Query SQL para obtener los tipos de tarjeta desde la base de datos
-                string query = "SELECT MET_NAME FROM METODO_PAGO";
-
-                // Crear una conexión y un comando SQL
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        // Abrir la conexión
                         connection.Open();
-
-                        // Ejecutar la consulta y obtener los resultados
                         SqlDataReader reader = command.ExecuteReader();
 
-                        // Recorrer los resultados y agregar cada tipo de tarjeta como una opción al select
                         while (reader.Read())
                         {
-                            string tipoTarjeta = reader["MET_NAME"].ToString();
-                            // ddlTipoTarjeta.Items.Add(new ListItem(tipoTarjeta, tipoTarjeta));
+                            string tipoTarjeta = reader["CARD_TYPE"].ToString();
+                            ddlTipoTarjeta.Items.Add(new ListItem(tipoTarjeta, tipoTarjeta));
                         }
 
-                        // Cerrar el reader y la conexión
                         reader.Close();
                     }
                 }
             }
             catch (Exception ex)
             {
-                // Manejar la excepción (por ejemplo, mostrar un mensaje de error)
                 Console.WriteLine("Error al cargar los tipos de tarjeta: " + ex.Message);
             }
         }
@@ -151,29 +91,160 @@ namespace desarrollodeproyectos.forms
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@OP", 1);
-                    command.Parameters.AddWithValue("@USUCARD_ID", 0); // Esto debería ser 0 si estás insertando un nuevo registro
-                    command.Parameters.AddWithValue("@USR_ID", userId); // Aquí pasas el ID del usuario
+                    command.Parameters.AddWithValue("@USUCARD_ID", 0);
+                    command.Parameters.AddWithValue("@USR_ID", userId);
                     command.Parameters.AddWithValue("@CARD_TYPE", cardType);
                     command.Parameters.AddWithValue("@NUMERO_TARJETA", cardNumber);
                     command.Parameters.AddWithValue("@NOMBRE_EN_TARJETA", cardName);
                     command.Parameters.AddWithValue("@FECHA_EXPIRACION", Convert.ToDateTime(expiryDate));
                     command.Parameters.AddWithValue("@CODIGO_SEGURIDAD", securityCode);
-                    command.Parameters.AddWithValue("@MET_ID", 0); // Asegúrate de obtener este valor si es necesario
 
-                    // Configurar @MET_ID como un parámetro de salida
-                    SqlParameter metIdParameter = command.Parameters.Add("@MET_ID", SqlDbType.Int);
-                    metIdParameter.Direction = ParameterDirection.Output;
+                    SqlParameter metIdParameter = new SqlParameter("@MET_ID", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    command.Parameters.Add(metIdParameter);
 
                     connection.Open();
                     command.ExecuteNonQuery();
-
-                    // Obtener el valor de @MET_ID después de ejecutar el procedimiento almacenado
                     metodoPagoId = Convert.ToInt32(metIdParameter.Value);
                 }
             }
-
-            // Devolver el ID del método de pago
             return metodoPagoId;
         }
+
+        private void LimpiarCampos()
+        {
+            ddlTipoTarjeta.ClearSelection();
+            numeroTarjetaDialog.Text = "";
+            nombreTarjetaDialog.Text = "";
+            fechaExpiracionDialog.Text = "";
+            codigoSeguridad1.Text = "";
+        }
+
+        private void CargarTarjetasGuardadas()
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["connDB"].ConnectionString;
+                string query = "SELECT CARD_TYPE, NUMERO_TARJETA, NOMBRE_EN_TARJETA FROM USUCARD";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        repeaterTarjetas.DataSource = reader;
+                        repeaterTarjetas.DataBind();
+
+                        reader.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al cargar las tarjetas guardadas: " + ex.Message);
+            }
+        }
+
+        protected void btnEliminarTarjeta_Click(object sender, EventArgs e)
+        {
+            LinkButton btnEliminar = (LinkButton)sender;
+            string numeroTarjeta = btnEliminar.CommandArgument;
+
+            try
+            {
+                
+                string query = "DELETE FROM USUCARD WHERE NUMERO_TARJETA = @NumeroTarjeta";
+
+                string connectionString = ConfigurationManager.ConnectionStrings["connDB"].ConnectionString;
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                       
+                        command.Parameters.AddWithValue("@NumeroTarjeta", numeroTarjeta);
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+
+                
+                CargarTarjetasGuardadas();
+            }
+            catch (Exception ex)
+            {
+               
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('Error al eliminar la tarjeta: {ex.Message}');", true);
+            }
+        }
+
+        private decimal ObtenerTotalCarrito(int carritoId)
+        {
+            decimal total = 0;
+            string connectionString = ConfigurationManager.ConnectionStrings["connDB"].ConnectionString;
+            string query = "SELECT SUM(CAR_DET_Importe) FROM CARRITO_DETALLE WHERE CAR_DET_CarritoId = @CarritoId";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CarritoId", carritoId);
+
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        total = Convert.ToDecimal(result);
+                    }
+                }
+            }
+            return total;
+        }
+
+        private void CargarTotalEfectivo()
+        {
+            try
+            {
+                int carritoId = ObtenerCarritoIdPorUsuario(); // Método que obtiene el ID del carrito actual del usuario
+                decimal totalCarrito = ObtenerTotalCarrito(carritoId);
+                precioCompra.Text = totalCarrito.ToString("F2"); // Formatear el total a 2 decimales
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al cargar el total en efectivo: " + ex.Message);
+            }
+        }
+
+        private int ObtenerCarritoIdPorUsuario()
+        {
+            int carritoId = 0;
+            int userId = ObtenerIdUsuario(); // Método que obtiene el ID del usuario actual
+            string connectionString = ConfigurationManager.ConnectionStrings["connDB"].ConnectionString;
+            string query = "SELECT CAR_Id FROM CARRITO WHERE CAR_UsuarioId = @UserId AND CAR_Status = 'Active'"; // Assuming 'Active' status for the current cart
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", userId);
+
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        carritoId = Convert.ToInt32(result);
+                    }
+                }
+            }
+            return carritoId;
+        }
+
     }
 }
