@@ -11,20 +11,23 @@ namespace desarrollodeproyectos
 {
     public partial class Carrito : System.Web.UI.Page
     {
+        int usuario; 
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
             {
-                CargarDatosAlDataGridView(1);
+                CargarDatosAlDataGridView(1); // se ocupa la variable global
             }
         }
 
         protected void GridViewCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+
             if (e.CommandName == "Eliminar")
             {
-                int index = Convert.ToInt32(GridViewCarrito.DataKeys[Convert.ToInt32(e.CommandArgument)].Value);
+
+                int index = Convert.ToInt32(e.CommandArgument);
 
                 using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["connDB"].ConnectionString))
                 {
@@ -38,18 +41,36 @@ namespace desarrollodeproyectos
                     cmd.Parameters.AddWithValue("@CAR_DET_CarritoId", idcarrito);
 
                     connection.Open();
-
                     cmd.ExecuteNonQuery();
-
                     connection.Close();
                 }
-                CargarDatosAlDataGridView(1);
+                CargarDatosAlDataGridView(usuario);
+            }
+
+            if (e.CommandName == "Incrementar" || e.CommandName == "Decrementar")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["connDB"].ConnectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("SP_CARRITO_DETALLE", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@OP", e.CommandName == "Incrementar" ? 4 : 3);
+                    cmd.Parameters.AddWithValue("@CAR_DET_ID", index);
+
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+                CargarDatosAlDataGridView(usuario);
             }
         }
 
         public void CrearCarrito(int productoId, int usuarioId, int cantidad)
         {
             bool carrito = UsuarioTieneCarrito(usuarioId);
+
+            usuario = usuarioId;
 
             if (carrito == false)
             {
@@ -62,17 +83,9 @@ namespace desarrollodeproyectos
                 int carritoId = ObtenerDatos(usuarioId, 1);
 
                 AgregarProductoAlCarritoDetalle(carritoId, productoId, cantidad);
-
-                CargarDatosAlDataGridView(usuarioId);
             }
         }
-
-        protected void btnSeguirComprando_Click(object sender, EventArgs e)
-        {
-           // TO DO que devuelva para la pagina principal
-        }
-
-        private void GUARDAR(int usuarioid)
+        public void GUARDAR(int usuarioid)
         {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["connDB"].ConnectionString))
             {
@@ -157,6 +170,7 @@ namespace desarrollodeproyectos
         {
             double total = ObtenerDatos(usuarioId, 3);
             lblTotalPagar.Text = "Total a pagar: $" + total.ToString();
+            
 
             List<CarritoDetalle> detallesCarrito = ObtenerDetallesCarritoDesdeBaseDeDatos();
             GridViewCarrito.DataSource = detallesCarrito;
@@ -175,6 +189,16 @@ namespace desarrollodeproyectos
                 panelContenido.Visible = true;
             }
         }
+
+        protected void btnRegresar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("InformacionVenta.aspx");
+        }
+        protected void btnPagar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MetodoDeEntrega.aspx");
+        }
+
 
         private List<CarritoDetalle> ObtenerDetallesCarritoDesdeBaseDeDatos()
         {
