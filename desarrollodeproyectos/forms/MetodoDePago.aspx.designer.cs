@@ -60,15 +60,6 @@ namespace desarrollodeproyectos.forms
         protected global::System.Web.UI.WebControls.RadioButton efectivo;
 
         /// <summary>
-        /// Control guardarTarjetaButton.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button guardarTarjetaButton;
-
-        /// <summary>
         /// Control ddlTipoTarjeta.
         /// </summary>
         /// <remarks>
@@ -112,15 +103,6 @@ namespace desarrollodeproyectos.forms
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox codigoSeguridad1;
-
-        /// <summary>
-        /// Control codigoSeguridad2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox codigoSeguridad2;
 
         /// <summary>
         /// Control guardarTarjetaDialogButton.
