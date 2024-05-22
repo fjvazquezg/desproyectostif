@@ -181,8 +181,8 @@ btnCancelar.addEventListener('click', function() {
 </script>
       <br>
             <asp:Button ID="Button1" class="btn btn-primary" runat="server" Text="Registrar" OnClick="Button1_Click" />
-    <!--  <button type="button" class="btn btn-primary">Registrar Vendedor</button>
-      <button type="button" class="btn btn-success">Registrar Comprador</button>-->
+            <asp:Button ID="btnRegistrarVendedor" class="btn btn-primary" runat="server" Text="Registrar Vendedor" OnClick="btnRegistrarVendedor_Click" />
+        <!--  <button type="button" class="btn btn-success">Registrar Comprador</button>-->
     </div>
         </div>
     </form>
