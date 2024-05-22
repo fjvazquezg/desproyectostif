@@ -32,32 +32,41 @@
     <form id="form1" runat="server">
         <div>
             <div class="container card shadow" style="padding: 3%; margin-top: 3%;" >
-    <div class="row justify-content-center">
-      <div class="col-md-40">
-            <fieldset>
-                <div class="form-group">
-                    <div class="row gx-4">
-                        <asp:Label ID="lblError" runat="server" Visible="false" Text="" ForeColor="Red"></asp:Label>
-                        <div class="col" style="margin-right: 250px;" >
-                        <label for="IdUsua" class="form-label mt-4 col">Id</label>
-                        <%--<input type="text" readonly="" class="form-control" style="width: 140px;" id="IdUsua" placeholder="1" />--%>
-                        <asp:TextBox ID="IdTipoComida" runat="server" CssClass="form-control" ReadOnly="true" Width="140px"></asp:TextBox>
-                        </div>
-                        <div class="col" style="margin-left: -88%;" >
-                        <label for="NombreUsua" class="form-label mt-4 col">Nombre de un tipo de comida</label>
-                        <%--<input type="text" readonly="" class="form-control" id="NombreUsua" placeholder="Juan Lopez Lopez" />--%>
-                        <asp:TextBox ID="NombreTipoComida" runat="server" CssClass="form-control" Placeholder="Quesadillas"></asp:TextBox>
-                        </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-40">
+                        <fieldset>
+                            <div class="form-group">
+                                <div class="row gx-4">
+                                    <asp:Label ID="lblError" runat="server" Visible="false" Text="" ForeColor="Red"></asp:Label>
+                                    <div class="col" style="margin-right: 250px;" >
+                                        <label for="IdUsua" class="form-label mt-4 col">Id</label>
+                                        <%--<input type="text" readonly="" class="form-control" style="width: 140px;" id="IdUsua" placeholder="1" />--%>
+                                        <asp:TextBox ID="IdTipoComida" runat="server" CssClass="form-control" ReadOnly="true" Width="140px"></asp:TextBox>
+                                    </div>
+                                    <div class="col" style="margin-left: -88%; margin-bottom: 1%;" >
+                                        <label for="NombreUsua" class="form-label mt-4 col">Nombre de un tipo de comida</label>
+                                        <%--<input type="text" readonly="" class="form-control" id="NombreUsua" placeholder="Juan Lopez Lopez" />--%>
+                                        <asp:TextBox ID="NombreTipoComida" runat="server" CssClass="form-control" Placeholder="Quesadillas"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <asp:GridView ID="gvTipoComida" runat="server" CssClass="table table-striped table-bordered" AutoGenerateColumns="false" AutoGenerateSelectButton="true" OnSelectedIndexChanged="gvTipoComida_SelectedIndexChanged">
+                                        <Columns>
+                                            <asp:BoundField DataField="TC_Id" HeaderText="ID" />
+                                            <asp:BoundField DataField="TC_Nombre" HeaderText="Nombre del tipo de comida" />
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
+                            </div>
+                            <br/>
+                            <asp:button ID="BtnRegistrar" Text="Registrar" type="button" class="btn btn-success" runat="server" style="margin-right: 50px; width: 150px;" OnClick="BtnRegistrar_Click"></asp:button>
+                            <asp:button ID="BtnCancelar" Text="Cancelar" type="button" class="btn btn-danger" runat="server" style="width: 150px;" ></asp:button>
+                        </fieldset>
                     </div>
                 </div>
-                <br/>
-                <asp:button ID="BtnRegistrar" Text="Registrar" type="button" class="btn btn-success" runat="server" style="margin-right: 50px; width: 150px;" OnClick="BtnRegistrar_Click"></asp:button>
-                <asp:button ID="BtnCancelar" Text="Cancelar" type="button" class="btn btn-danger" runat="server" style="width: 150px;" ></asp:button>
-         </fieldset>
-      </div>
-    </div>
-  </div>
-
+            </div>
   <footer class="border-top footer text-muted" style="margin: 2%;">
     <div class="container" style="margin: 1%;">
         &copy; 2024 - Proyecto de la comida - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

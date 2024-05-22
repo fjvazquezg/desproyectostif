@@ -16,42 +16,46 @@ namespace desarrollodeproyectos.EntregasVerificacion
                 Host = "smtp.gmail.com",
                 Port = 587,
                 EnableSsl = true,
-                Credentials = new NetworkCredential("isof.uadeo@gmail.com", "qjzf gawh dlta zdyl")
+                Credentials = new NetworkCredential("losrandys81@gmail.com", "ovhbdylfdlugpifv")
             };
         }
 
-        // metodo para enviar el correo electrónico
-        public bool EnviarCorreo(string fromAddress, string fromDisplayName,
-            string toAddress, string subject, string body, string tempQrCodePath, string codigo)
+        // Método para enviar el correo electrónico
+
+        public bool EnviarCorreo(string fromAddress, string fromDisplayName, string toAddress, string subject, string body, string qrCodeBase64, string codigo)
         {
             try
             {
-                using (var mailMessage = new MailMessage(fromAddress, toAddress, subject, body))
+                using (var mailMessage = new MailMessage())
                 {
-                    mailMessage.IsBodyHtml = true;
                     mailMessage.From = new MailAddress(fromAddress, fromDisplayName);
+                    mailMessage.To.Add(toAddress);
+                    mailMessage.Subject = subject;
+                    mailMessage.Body = body;
+                    mailMessage.IsBodyHtml = true;
 
-                    // Adjuntar el código QR
-                    mailMessage.Attachments.Add(new Attachment(tempQrCodePath));
+                    if (!string.IsNullOrEmpty(qrCodeBase64))
+                    {
+                        var qrCodeBytes = Convert.FromBase64String(qrCodeBase64);
+                        var qrCodeStream = new MemoryStream(qrCodeBytes);
+                        mailMessage.Attachments.Add(new Attachment(qrCodeStream, "qrcode.png"));
+                    }
 
                     _smtpClient.Send(mailMessage);
-                    // Si el correo se envía con éxito, devuelve true
                     return true;
                 }
             }
             catch (SmtpException ex)
             {
-                // error al envío de correo electrónico
                 Console.WriteLine($"Error al enviar el correo electrónico: {ex.Message}");
-                // Si ocurre un error al enviar el correo, devuelve false
                 return false;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error inesperado: {ex.Message}");
-                // Si ocurre un error inesperado, también devuelve false
                 return false;
             }
         }
+
     }
 }

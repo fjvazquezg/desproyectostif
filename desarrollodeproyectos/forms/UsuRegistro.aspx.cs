@@ -26,7 +26,7 @@ namespace desarrollodeproyectos.forms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //coment
         }
 
         public static string GetSHA256(string str)
@@ -144,7 +144,20 @@ namespace desarrollodeproyectos.forms
 
             return nextUserId;
         }
+        protected void btnRegistrarVendedor_Click(object sender, EventArgs e)
+        {
+            // Guardar los datos en variables de sesión para usarlos en la siguiente página
+            Session["Nombre"] = txtNombre.Text;
+            Session["Apellido"] = txtApellido.Text;
+            Session["Correo"] = txtCorreo.Text;
+            Session["Telefono"] = txtTelefono.Text;
+            Session["Contrasena"] = GetSHA256(txtContrasena.Text); // Guardar la contraseña cifrada
 
+
+
+            // Redirigir al formulario de verificación de documentos
+            Response.Redirect("MetodosDeComprobacion.aspx");
+        }
 
 
     }

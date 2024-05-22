@@ -99,6 +99,7 @@ namespace desarrollodeproyectos.forms
                 if (EnviarCorreoUsuario(email, nombre, apellido, carritoId))
                 {
                     ShowModal(true, "Correo enviado exitosamente.");
+                    Response.Redirect("CorreoEnviadoCorrectamente");
                 }
                 else
                 {
@@ -107,9 +108,10 @@ namespace desarrollodeproyectos.forms
             }
             catch (Exception ex)
             {
-                ShowModal(false, $"Ocurrio un error: {ex.Message}");
+                ShowModal(false, $"Correo no enviado: {ex.Message}");
             }
         }
+
 
 
         private bool EnviarCorreoUsuario(string email, string nombre, string apellido, int carritoId)
@@ -139,13 +141,82 @@ namespace desarrollodeproyectos.forms
                 throw new InvalidOperationException("El servicio de correo no está inicializado.");
             }
 
+            string body = GenerarCuerpoCorreo(nombre, apellido, qrCodeBase64, codigo);
+
             return correo.EnviarCorreo(
-                "uadeoisoftt@gmail.com", "Desarrollo TICS",
+                "losrandys81@gmail.com", "Desarrollo TICS",
                 email, $"Entrega de Producto para {nombre} {apellido}",
-                $"Aquí están los detalles de tu entrega:<br/><img src='data:image/png;base64,{qrCodeBase64}'><br/>Y tu clave de verificación: {codigo}",
-                qrCodeBase64, codigo
+                body,
+                qrCodeBase64,
+                codigo
             );
         }
+
+
+
+
+        private string GenerarCuerpoCorreo(string nombre, string apellido, string qrCodeBase64, string codigo)
+        {
+            return $@"
+    <html>
+    <head>
+        <style>
+            body {{
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f9;
+            }}
+            .container {{
+                width: 80%;
+                margin: auto;
+                padding: 20px;
+                background-color: #ffffff;
+                border: 1px solid #dddddd;
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }}
+            .header {{
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px;
+                text-align: center;
+                border-radius: 10px 10px 0 0;
+            }}
+            .content {{
+                margin: 20px 0;
+            }}
+            .footer {{
+                text-align: center;
+                font-size: 0.9em;
+                color: #777777;
+                margin-top: 20px;
+            }}
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='header'>
+                <h1>Entrega de Producto</h1>
+            </div>
+            <div class='content'>
+                <p>Estimado/a {nombre} {apellido},</p>
+                <p>Nos complace informarle que su pedido está listo para ser entregado. A continuación, encontrará los detalles de su entrega:</p>
+                <p><strong>Código de Verificación:</strong> {codigo}</p>
+                <p>Por favor, presente este código en el momento de la entrega.</p>
+                <p>Además, hemos generado un código QR para su conveniencia:</p>
+                <img src='data:image/png;base64,{qrCodeBase64}' alt='Código QR' style='display: block; margin: auto;'>
+                <p>Si tiene alguna pregunta o necesita asistencia adicional, no dude en contactarnos.</p>
+                <p>Atentamente,<br/>El equipo de Desarrollo TICS</p>
+            </div>
+            <div class='footer'>
+                <p>&copy; {DateTime.Now.Year} Desarrollo TICS. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </body>
+    </html>";
+        }
+
 
 
 

@@ -17,6 +17,7 @@ namespace desarrollodeproyectos.forms
             if (!IsPostBack)
             {
                 CargarConsecutivo();
+                CargarGrid();
             }
         }
 
@@ -72,6 +73,34 @@ namespace desarrollodeproyectos.forms
             }
         }
 
+        public void CargarGrid()
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connDB"].ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "SP_TIPOCOMIDA";
+                cmd.Parameters.Add("@OP", SqlDbType.TinyInt).Value = 3;
+                cmd.Connection = conn;
+
+                try
+                {
+                    conn.Open();
+                    da.SelectCommand = cmd;
+                    da.Fill(ds);
+
+                    gvTipoComida.DataSource = ds;
+                    gvTipoComida.DataBind();
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
         public void ClearTodo()
         {
             IdTipoComida.Text = "";
@@ -91,7 +120,17 @@ namespace desarrollodeproyectos.forms
                 RegistrarTC();
                 ClearTodo();
                 CargarConsecutivo();
+                CargarGrid();
             }
+        }
+
+        protected void gvTipoComida_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Obtiene el índice de la fila seleccionada
+            int index = gvTipoComida.SelectedIndex;
+
+            IdTipoComida.Text = gvTipoComida.SelectedRow.Cells[1].Text;
+            NombreTipoComida.Text = gvTipoComida.SelectedRow.Cells[2].Text;
         }
     }
 }

@@ -79,7 +79,7 @@ namespace desarrollodeproyectos.forms
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@OP", 3);
-                command.Parameters.AddWithValue("@CAR_ID", carId);
+                command.Parameters.AddWithValue("@CAR_UsuarioId", carId);
                 command.Parameters.AddWithValue("@CAR_TipoDeEntrega", MetoEntrega);
                 command.Parameters.AddWithValue("@CAR_LugarDeEntrega", LugarEntrega);
 

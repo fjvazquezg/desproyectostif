@@ -16,7 +16,7 @@ namespace desarrollodeproyectos.forms
         protected void btnChat_Click(object sender, EventArgs e)
         {
             // Redirigir al chat privado
-            Response.Redirect("Chat_Privado.html");
+            Response.Redirect("Chat_Privado.aspx");
         }
 
         protected void btnWhatsApp_Click(object sender, EventArgs e)

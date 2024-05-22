@@ -45,6 +45,9 @@ namespace desarrollodeproyectos.forms
                     IdUsuar.Text = idusua.ToString();
                     NombreUsua.Text = nombreusua;
                     TraerDatosProd();
+                    Preview.ImageUrl = defaultImageUrl;
+                    Previewb.ImageUrl = defaultImageUrl;
+                    Previewc.ImageUrl = defaultImageUrl;
                 }
                 else
                 {
@@ -118,7 +121,7 @@ namespace desarrollodeproyectos.forms
                 SqlDataReader dr;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "SP_PRODUCTO";
-                cmd.Parameters.Add("@OP", SqlDbType.TinyInt).Value = 5;
+                cmd.Parameters.Add("@OP", SqlDbType.TinyInt).Value = 6;
                 cmd.Parameters.Add("@PROD_Id", SqlDbType.Int).Value = prodid;
                 cmd.Connection = conn;
 
@@ -135,12 +138,12 @@ namespace desarrollodeproyectos.forms
                         StockMin.Text = dr.GetInt32(3).ToString();
                         StockMax.Text = dr.GetInt32(4).ToString();
                         Seleccion.SelectedValue = dr.GetInt32(5).ToString();
-                        DescripcionProduc.Text = dr.GetString(6);
+                        DescripcionProduc.Text = dr.GetString(8);
                         //Preview.ImageUrl = dr.GetString(7);
                         //Previewb.ImageUrl = dr.GetString(8);
                         //Previewc.ImageUrl = dr.GetString(9);
                         //Logo.PostedFile = dr.GetString(7).ToString();
-                        CheckEstado.Checked = dr.GetBoolean(10);
+                        CheckEstado.Checked = dr.GetBoolean(11);
                     }
                 }
                 finally
