@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TurnosPedidos.aspx.cs" Inherits="desarrollodeproyectos.forms.TurnosPedidos" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TurnosPedidos.aspx.cs" Inherits="desarrollodeproyectos.forms.TurnosPedidos" %>
 <%@ Import Namespace="System.Data" %>
 <%@ Import Namespace="System.Data.SqlClient" %>
 
