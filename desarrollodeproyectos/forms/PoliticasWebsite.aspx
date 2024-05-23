@@ -1,4 +1,4 @@
-<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PoliticasWebsite.aspx.cs" Inherits="desarrollodeproyectos.forms.PoliticasWebsite" %>
+<%@ Page " Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PoliticasWebsite.aspx.cs" Inherits="desarrollodeproyectos.forms.PoliticasWebsite" %>
 
 <!DOCTYPE html>
 
